@@ -1,3 +1,5 @@
+[![Join the chat at https://gitter.im/papyros/qml-material](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/diceproject?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](http://img.shields.io/:license-gpl3-blue.svg)
 
 # Dynamic Interface for Computation and Evaluation
