@@ -4,6 +4,8 @@
 
 # Dynamic Interface for Computation and Evaluation
 
+[![Join the chat at https://gitter.im/diceproject/dice-dev](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/diceproject/dice-dev?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 **DICE** is an experimental open source project for a simplified creation of  user interfaces and utilities in the area of numerical simulations.
 
 ![DICE Screenshot](http://dicehub.net/wp-content/uploads/2015/04/dice_desk.jpg "DICE Screenshot")
