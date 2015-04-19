@@ -1,10 +1,9 @@
-[![Join the chat at https://gitter.im/papyros/qml-material](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/diceproject/dice-dev?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=body_badge)
-
-[![License](http://img.shields.io/:license-gpl3-blue.svg)](http://img.shields.io/:license-gpl3-blue.svg)
-
 # Dynamic Interface for Computation and Evaluation
 
 [![Join the chat at https://gitter.im/diceproject/dice-dev](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/diceproject/dice-dev?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[![License](http://img.shields.io/:license-gpl3-blue.svg)](http://img.shields.io/:license-gpl3-blue.svg)
+[![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)](https://gitter.im/diceproject/dice-dev/issues)
 
 **DICE** is an experimental open source project for a simplified creation of  user interfaces and utilities in the area of numerical simulations.
 
