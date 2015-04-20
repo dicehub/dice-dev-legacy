@@ -4,20 +4,27 @@
 #include <QWindow>
 #include <QIcon>
 #include <QLocale>
-#include <QtWebEngine>
+#include <QtWebEngine/qtwebengineglobal.h>
 #include <QDebug>
+#include <QLibraryInfo>
 
 #include "pythonloader.h"
 
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
+    qDebug() << "library paths" << app.libraryPaths();
     QQmlApplicationEngine engine;
     engine.addImportPath("libview");
 
     // We must set the locale always to C as some tools won't work correctly without it.
     // e.g. decimal points will always be "." this way.
     QLocale::setDefault(QLocale::c());
+
+    qDebug() << "QLibrary" << QLibraryInfo::location(QLibraryInfo::LibraryExecutablesPath);
+    qDebug() << "QLibraryPrefix" << QLibraryInfo::location(QLibraryInfo::PrefixPath);
+    qDebug() << "QLibraryLocation" << QLibraryInfo::location(QLibraryInfo::LibrariesPath);
+    QtWebEngine::initialize();
 
     PythonLoader pythonLoader{&app};
     QObject* dice = pythonLoader.getObject("core.main", "Dice");
@@ -26,7 +33,6 @@ int main(int argc, char* argv[])
         return -1;
     }
 
-    QtWebEngine::initialize();
     QQmlContext* context = engine.rootContext();
 
     QVariant vEngine, vContext;

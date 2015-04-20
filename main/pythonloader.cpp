@@ -30,11 +30,23 @@ PythonLoader::PythonLoader(QObject *parent) : QObject(parent)
 
     if (!Py_IsInitialized())
     {
+        QString sysPath = QCoreApplication::applicationDirPath();
+        QString programPath = sysPath + "/thirdparty/Python/bin/python3";
+        wchar_t* programName = new wchar_t[programPath.length() + 1];
+        programPath.toWCharArray(programName);
+        programName[programPath.length()] = 0;
+
+        Py_SetProgramName(programName);
+        wprintf(L"prefix: %S\n", Py_GetPrefix());
+        wprintf(L"program full path: %S\n", Py_GetProgramFullPath());
         Py_Initialize();
-        addToSysPath(QCoreApplication::applicationDirPath());
+        QStringList paths = {sysPath+"/thirdparty/Python/lib/python3.4", sysPath+"/thirdparty/Python/lib/python3.4/plat-linux",
+                             sysPath+"/thirdparty/Python/lib/python3.4/lib-dynload", sysPath+"/thirdparty/Python/lib/python3.4/site-packages",
+                            sysPath, sysPath+"/thirdparty/Python/lib"};
+        QString wholePath = paths.join(":");
+        PySys_SetPath(wholePath.toStdWString().c_str());
 
         getSipAPI();
-
         PyEval_InitThreads();
         PyEval_SaveThread();
     }
@@ -86,51 +98,6 @@ QObject *PythonLoader::getObject(QString package, QString name)
     PyGILState_Release(gil);
     return qObject;
 }
-
-bool PythonLoader::addToSysPath(const QString &py_plugin_dir)
-{
-    PyObject *sys_path = getModuleAttr("sys", "path");
-
-    if (!sys_path)
-        return false;
-
-    PyObject *plugin_dir_obj = PyUnicode_FromKindAndData(PyUnicode_2BYTE_KIND,
-                                                         py_plugin_dir.constData(), py_plugin_dir.length());
-
-    if (!plugin_dir_obj)
-    {
-        Py_DECREF(sys_path);
-        return false;
-    }
-
-
-    int rc = PyList_Append(sys_path, plugin_dir_obj);
-    Py_DECREF(plugin_dir_obj);
-    Py_DECREF(sys_path);
-
-    if (rc < 0)
-    {
-        return false;
-    }
-
-    return true;
-}
-
-
-PyObject *PythonLoader::getModuleAttr(const char *module, const char *attr)
-{
-    PyObject *mod = PyImport_ImportModule(module);
-
-    if (!mod)
-        return 0;
-
-    PyObject *obj = PyObject_GetAttrString(mod, attr);
-
-    Py_DECREF(mod);
-
-    return obj;
-}
-
 
 void PythonLoader::getSipAPI()
 {

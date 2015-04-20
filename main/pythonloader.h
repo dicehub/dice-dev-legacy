@@ -35,7 +35,6 @@ public:
 
 private:
     void getSipAPI();
-    static bool addToSysPath(const QString &py_plugin_dir);
     static PyObject *getModuleAttr(const char *module, const char *attr);
 
     const sipAPIDef *sip = nullptr;

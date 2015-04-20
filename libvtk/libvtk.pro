@@ -7,7 +7,8 @@ TARGET = $$qtLibraryTarget($$TARGET)
 uri = DICE.App.Renderer
 
 INCLUDEPATH += src
-QMAKE_RPATHDIR += /usr/local/lib
+#QMAKE_RPATHDIR += /usr/local/lib
+QMAKE_RPATHDIR += $$OUT_PWD/../thirdparty/Qt/lib
 
 # Input
 SOURCES += \

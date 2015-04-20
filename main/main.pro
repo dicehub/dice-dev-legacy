@@ -47,6 +47,8 @@ HEADERS += pythonloader.h
 # Installation path
 # target.path =
 
+QMAKE_LIBDIR += $${OUT_PWD}/../thirdparty/Qt/lib
+
 include(deployment.pri)
 qtcAddDeployment()
 
@@ -58,6 +60,9 @@ DEFINES += QMAKE
 TARGET = ../DICE
 
 QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/thirdparty/Qt/lib\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/thirdparty/Python/lib\''
+QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN/thirdparty/vtk/lib\''
 
 #OTHER_FILES +=
 
@@ -65,7 +70,7 @@ QMAKE_LFLAGS += '-Wl,-rpath,\'\$$ORIGIN\''
 
 #DISTFILES +=
 
-include(../libdice/python.pri)
+include(python.pri)
 
 #QMAKE_CXXFLAGS+="-fsanitize=address -fno-omit-frame-pointer"
 #QMAKE_CFLAGS+="-fsanitize=address -fno-omit-frame-pointer"

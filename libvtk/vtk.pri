@@ -22,9 +22,11 @@
 
 
 
-VTK_VERSION = 6.1
-INCLUDEPATH += /usr/local/include/vtk-$${VTK_VERSION}
-LIBPATH += /usr/local/lib
+VTK_VERSION = 6.2
+#INCLUDEPATH += /usr/local/include/vtk-$${VTK_VERSION}
+#LIBPATH += /usr/local/lib
+INCLUDEPATH += $${OUT_PWD}/../thirdparty/vtk/include/vtk-$${VTK_VERSION}
+QMAKE_LIBDIR += $${OUT_PWD}/../thirdparty/vtk/lib
 
 # all vtk libraries as given by cmakes ${VTK_LIBRARIES}
 LIBS += \
@@ -116,18 +118,18 @@ LIBS += \
 -lvtkFiltersSelection-$${VTK_VERSION} \
 -lvtkFiltersTexture-$${VTK_VERSION} \
 -lvtkFiltersVerdict-$${VTK_VERSION} \
--lvtkGUISupportQt-$${VTK_VERSION} \
--lvtkGUISupportQtOpenGL-$${VTK_VERSION} \
+#-lvtkGUISupportQt-$${VTK_VERSION} \
+#-lvtkGUISupportQtOpenGL-$${VTK_VERSION} \
 -lvtksqlite-$${VTK_VERSION} \
 -lvtkIOSQL-$${VTK_VERSION} \
--lvtkGUISupportQtSQL-$${VTK_VERSION} \
+#-lvtkGUISupportQtSQL-$${VTK_VERSION} \
 -lvtkInfovisLayout-$${VTK_VERSION} \
 -lvtkViewsInfovis-$${VTK_VERSION} \
--lvtkViewsQt-$${VTK_VERSION} \
--lvtkGUISupportQtWebkit-$${VTK_VERSION} \
+#-lvtkViewsQt-$${VTK_VERSION} \
+#-lvtkGUISupportQtWebkit-$${VTK_VERSION} \
 -lvtkproj4-$${VTK_VERSION} \
 -lvtkGeovisCore-$${VTK_VERSION} \
--lvtkViewsGeovis-$${VTK_VERSION} \
+#-lvtkViewsGeovis-$${VTK_VERSION} \
 -lvtkIOEnSight-$${VTK_VERSION} \
 -lvtkIOExodus-$${VTK_VERSION} \
 -lvtkInteractionImage-$${VTK_VERSION} \
@@ -150,6 +152,6 @@ LIBS += \
 -lvtkImagingMorphological-$${VTK_VERSION} \
 -lvtkRenderingLOD-$${VTK_VERSION} \
 -lvtkRenderingLIC-$${VTK_VERSION} \
--lvtkRenderingQt-$${VTK_VERSION} \
--lvtkRenderingVolumeAMR-$${VTK_VERSION}
+#-lvtkRenderingQt-$${VTK_VERSION} \
+#-lvtkRenderingVolumeAMR-$${VTK_VERSION}
 
