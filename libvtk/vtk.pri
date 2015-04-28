@@ -76,7 +76,7 @@ LIBS += \
 -lvtkIOLegacy-$${VTK_VERSION} \
 -lvtklibxml2-$${VTK_VERSION} \
 -lvtkIOInfovis-$${VTK_VERSION} \
--lvtkTestingRendering-$${VTK_VERSION} \
+#-lvtkTestingRendering-$${VTK_VERSION} \
 -lvtkImagingSources-$${VTK_VERSION} \
 -lvtkFiltersHybrid-$${VTK_VERSION} \
 -lvtkFiltersModeling-$${VTK_VERSION} \
@@ -101,7 +101,7 @@ LIBS += \
 -lvtkFiltersImaging-$${VTK_VERSION} \
 -lvtkRenderingFreeTypeOpenGL-$${VTK_VERSION} \
 -lvtkFiltersGeneric-$${VTK_VERSION} \
--lvtkTestingGenericBridge-$${VTK_VERSION} \
+#-lvtkTestingGenericBridge-$${VTK_VERSION} \
 -lvtkFiltersHyperTree-$${VTK_VERSION} \
 -lvtkFiltersParallel-$${VTK_VERSION} \
 -lvtkParallelMPI-$${VTK_VERSION} \
@@ -144,7 +144,7 @@ LIBS += \
 -lvtkIOMovie-$${VTK_VERSION} \
 -lvtkIOPLY-$${VTK_VERSION} \
 -lvtkIOParallelNetCDF-$${VTK_VERSION} \
--lvtkTestingIOSQL-$${VTK_VERSION} \
+#-lvtkTestingIOSQL-$${VTK_VERSION} \
 -lvtkIOVideo-$${VTK_VERSION} \
 -lvtkImagingStatistics-$${VTK_VERSION} \
 -lvtkImagingStencil-$${VTK_VERSION} \
