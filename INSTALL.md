@@ -12,6 +12,8 @@ Optional requirements
 ---------------------
 
 - liblapack3
+- libgl1-mesa-dev
+- build-essential
 
 Linux:
 ------
