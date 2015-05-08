@@ -16,7 +16,16 @@ class Settings(CoreApp):
     def __init__(self, parent=None):
         super(Settings, self).__init__(parent)
 
-        self.__settings_tree = [{'text': 'OpenFOAM'}]
+        self.__settings_tree = [
+            {
+                'text': 'OpenFOAM230'
+            },
+            {
+                'text': 'ParaView'
+            },
+            {
+                'text': 'Dakota610'
+            }]
 
         settings_folder = os.path.join(os.path.expanduser("~"), ".config", "DICE")
         if not os.path.exists(settings_folder):
@@ -47,20 +56,32 @@ class Settings(CoreApp):
         :param settings_path:
         :return:
         """
-        return [{'label': label, 'value': value} for label, value in self.__settings.items()]
+        for app_name in self.__settings:
+            if app_name == settings_path[0]:
+                for label, value in self.__settings[app_name].items():
+                    self.debug("settings "+label+ " " + value)
+                    return [
+                        {
+                            'label': label,
+                            'value': value
+                        }
+                    ]
 
     @pyqtSlot("QStringList", str, "QVariant", name="setValue")
     def set_value(self, path, label, value):
-        self.__settings[label] = value
-        self.update_settings_tree()
+        app_name = path[0]
+        if app_name in self.__settings:
+            self.__settings[app_name][label] = value
+            self.__settings.write()
 
     def value(self, app, setting):
         try:
-            return self.__settings[setting]
+            return self.__settings[app][setting]
         except KeyError:
             return None
 
     def __load_default_if_empty_settings(self):
         if self.__settings == {}:
-            self.__settings['foamExec'] = 'foamExec'
-            self.__settings['paraview'] = 'paraview'
+            self.__settings['OpenFOAM230'] = {'foamExec': 'foamExec'}
+            self.__settings['ParaView'] = {'paraview': 'paraview'}
+            self.__settings['Dakota610'] = {'dakota': 'dakota'}

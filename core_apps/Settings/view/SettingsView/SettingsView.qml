@@ -80,7 +80,7 @@ Rectangle {
                             FlatButton {
                                 id: button
 
-                                width: 200
+                                width: 100
                                 text: "Select"
                                 onClicked:
                                 {

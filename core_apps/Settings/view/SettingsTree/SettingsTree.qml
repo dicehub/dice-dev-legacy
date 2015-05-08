@@ -6,6 +6,8 @@ import DICE.App 1.0
 Rectangle {
     id: root
 
+    property string currentNodePath: treeView.currentNodePath[0]
+
     color: colors.mainBackgroundColor
 
     Rectangle {
@@ -29,9 +31,14 @@ Rectangle {
             }
 
             TreeView {
+                id: treeView
                 modelData: coreApp.settingsTree
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+
+                Component.onCompleted: {
+                    setCurrentNode("OpenFOAM230")
+                }
             }
         }
     }
