@@ -37,7 +37,7 @@ Rectangle {
                 Layout.fillHeight: true
 
                 Component.onCompleted: {
-                    setCurrentNode("OpenFOAM230")
+                    setCurrentNode("OpenFOAM")
                 }
             }
         }

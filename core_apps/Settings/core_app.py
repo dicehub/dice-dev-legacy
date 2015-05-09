@@ -74,14 +74,14 @@ class Settings(CoreApp):
             self.__settings[app_name][label] = value
             self.__settings.write()
 
-    def value(self, app, setting):
+    def value(self, app, settings_path):
         try:
-            return self.__settings[app][setting]
+            return self.__settings[settings_path[0]][settings_path[1]]
         except KeyError:
             return None
 
     def __load_default_if_empty_settings(self):
         if self.__settings == {}:
-            self.__settings['OpenFOAM230'] = {'foamExec': 'foamExec'}
+            self.__settings['OpenFOAM'] = {'foamExec': 'foamExec'}
             self.__settings['ParaView'] = {'paraview': 'paraview'}
-            self.__settings['Dakota610'] = {'dakota': 'dakota'}
+            self.__settings['DAKOTA'] = {'dakota': 'dakota'}
