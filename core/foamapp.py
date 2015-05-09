@@ -165,8 +165,7 @@ class FoamApp(BasicApp):
     #         log_file.write(line)
 
     def foam_exec(self, args, stdout=None, stderr=None, cwd=None):
-        f_args = [self.dice.settings.value(self, 'foamExec')]
-        f_args.extend(args)
+        f_args = [self.dice.settings.value(self, ['OpenFOAM', 'foamExec'])]
         result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd)
         return result
 
