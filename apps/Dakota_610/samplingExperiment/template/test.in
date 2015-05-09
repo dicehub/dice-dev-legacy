@@ -1,0 +1,106 @@
+environment
+   #graphics
+    tabular_graphics_data
+        tabular_graphics_file = 'table_out.dat'
+    method_pointer = 'method1'
+  
+     
+    
+method
+   id_method = 'method1'   
+   
+    #POSSIBLE OPTIONS FOR SAMPLING EXPERIMENT  
+    #sampling
+	#sample_type
+		#incremental_lhs
+		#incremental_random
+		#lhs
+		#random
+
+	#samples = 20
+	#seed = 52 
+	#rng rnum2	
+	#rng mt19937
+
+    #POSSIBLE OPTIONS FOR DACE EXPERIMENT  
+    dace lhs
+        #box_behnken
+        #central_composite
+        #grid
+        #lhs
+        #oa_lhs
+        #oas
+        #random
+
+	samples = 20
+	seed    = 52
+
+        
+    #POSSIBLE OPTIONS FOR FSU EXPERIMENT 
+        #fsu_cvt
+        #fsu_quasi_mc halton
+        #fsu_quasi_mc hammersley
+	
+	#latinize
+
+	#samples = 20
+	#seed    = 52
+
+    #POSSIBLE OPTIONS FOR PSUADE EXPERIMENT         
+        #psuade_moat
+
+	#samples = 30
+	#seed    = 52
+
+model
+  single
+
+variables,
+  continuous_design = 2
+   #cdv_initial_point     6.0    4.0 
+   #cdv_initial_point     4.0    6.0  
+ 
+   #cdv_lower_bounds      1.0    1.0 
+    cdv_lower_bounds      0.0    0.0
+
+   #cdv_upper_bounds      9.0    6.0
+    cdv_upper_bounds      1.0    1.0
+
+    cdv_descriptors       'x1'   'x2'
+
+	  
+interface
+	#direct
+	#   analysis_driver =       'X.driver'
+
+	fork
+#	  asynchronous
+	  analysis_driver = 'simulator_script'
+	  parameters_file = 'params.in'
+	  results_file    = 'results.out'
+	  
+	  file_tag
+	  file_save
+
+# uncomment to leave params.in and results.out files in work_dir subdirectories
+	  #work_directory 
+	  #directory_tag
+
+	 #version 6.0.0 
+         #template_directory = 'templatedir'
+         #version 6.1.0
+         #copy_files = 'templatedir/*'
+
+ 	  #named 'workdir' file_save  directory_save
+
+	  aprepro
+	  
+# when using conmin_frcg (above) with analytic_gradients (below), 
+# need to turn off the active set vector as rosenbrock_bb does not parse it.
+# 	  deactivate active_set_vector
+
+	   
+responses
+	objective_functions = 1
+	no_gradients
+	no_hessians

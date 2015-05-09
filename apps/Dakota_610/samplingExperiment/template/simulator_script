@@ -1,0 +1,41 @@
+#!/bin/sh
+# Sample simulator to Dakota system call script
+# See Advanced Simulation Code Interfaces chapter in Users Manual
+
+# $1 is params.in FROM Dakota
+# $2 is results.out returned to Dakota
+
+# --------------
+# PRE-PROCESSING
+# --------------
+# Incorporate the parameters from DAKOTA into the template, writing X.in
+# Use the following line if SNL's APREPRO utility is used instead of DPrePro.
+# ../aprepro -c '*' -q --nowarning X.template X.in
+
+#SECTION EMPTY
+#I AM NOT USING TEMPLATES
+
+#dprepro $1 X.template X.in
+
+# --------
+# ANALYSIS
+# --------
+
+#SECTION EMPTY
+#I AM NOT DOING ANY ANALYSIS
+#I AM ONLY WRITING SOME INFO ON SCREEN
+
+echo -e "\n************************************"
+echo  "************************************"
+echo "Running in directory: "
+pwd
+echo "************************************"
+echo -e "************************************\n"
+
+# ---------------
+# POST-PROCESSING
+# ---------------
+
+#WRITES DUMMY VALUES TO FILE $2
+echo "1" > tmp.txt
+mv tmp.txt $2
