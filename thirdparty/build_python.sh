@@ -69,3 +69,6 @@ else
     build
     buildpackages
 fi
+
+cd ..
+./change_python_env_path.sh
