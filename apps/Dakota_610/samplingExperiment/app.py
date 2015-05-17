@@ -11,10 +11,14 @@ All rights reserved.
 # =======================
 import os
 import stat
+import copy
+
 
 # DICE modules
 # ============
 from core.dakota.dakotaapp import DakotaApp
+from core.dakota.dakota_table_csv import DakotaTableCsv
+from core.dakota.dakota_parser import ParsedDakotaInputFile
 
 
 class samplingExperiment(DakotaApp):
@@ -25,7 +29,7 @@ class samplingExperiment(DakotaApp):
 
     app_name = "samplingExperiment"
     input_types = []
-    output_types = []
+    output_types = ["dakota_table_csv"]
 
     def __init__(self, parent, instance_name, status):
         """
@@ -38,8 +42,27 @@ class samplingExperiment(DakotaApp):
 
         DakotaApp.__init__(self, parent, instance_name, status)
 
+        # Parsed files
+        # ============
+        self.dakota_input_file = None
+
+        # Input/Output objects
+        # ====================
+        self.__output_csv = []
+
     def load(self):
         self.copy_template_folder()
+
+        # Parsed files
+        # ============
+        self.debug("----")
+        self.dakota_input_file = ParsedDakotaInputFile(self.config_path('input.in'))
+        self.debug("INPUT ---- "+str(self.dakota_input_file))
+
+        # Convert table_out.dat to table_out.csv and load for visualization
+        # =================================================================
+        if self.status == DakotaApp.FINISHED:
+            self.__output_csv = DakotaTableCsv(self.current_run_path())
 
     def prepare(self):
         """
@@ -52,10 +75,19 @@ class samplingExperiment(DakotaApp):
         return True
 
     def run(self):
-        self.dakota_exec(["-i", "input.in"])
+        if self.dakota_exec(["-i", "input.in"]) == 0:
+            self.__output_csv = DakotaTableCsv(self.current_run_path())
+            return True
 
     def __make_executable_by_owner(self, files):
         for f in files:
             file_path = self.current_run_path(f)
             st = os.stat(file_path)
             os.chmod(file_path, st.st_mode | stat.S_IEXEC)
+
+    '''
+    Output for other Apps
+    =====================
+    '''
+    def dakota_table_csv_out(self):
+        return copy.deepcopy(self.__output_csv)

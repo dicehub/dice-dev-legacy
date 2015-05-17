@@ -1,7 +1,15 @@
-import QtQuick 2.0
+import QtQuick 2.4
+import QtWebEngine 1.0
 
 Rectangle {
-    width: 100
-    height: 62
+    id: root
+
+    anchors.fill: parent
+
+    WebEngineView {
+        id: webEngineView
+
+        anchors.fill: parent
+    }
 }
 
