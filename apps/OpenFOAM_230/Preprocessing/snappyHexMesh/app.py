@@ -21,7 +21,7 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot, pyqtProperty
 # ============
 from core.foamapp import FoamApp
 from core.dice.vis import STLLoader, FoamMeshLoader, PointWrapper
-from core.dice.tools.foam_mesh import FoamMesh
+from core.foam.foam_mesh import FoamMesh
 
 # App modules
 # ============
