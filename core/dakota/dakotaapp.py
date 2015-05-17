@@ -1,8 +1,6 @@
 # Standard Python modules
 # =======================
 import os
-import subprocess
-import csv
 
 # DICE modules
 # ============
