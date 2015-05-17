@@ -1,9 +1,15 @@
+# Standard Python modules
+# =======================
 import os
 
+# Standard Python modules
+# =======================
 from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot, qDebug, QUrl, QAbstractListModel, QModelIndex, \
     Qt, QVariant, QUrl
 from PyQt5.QtQuick import QQuickItem
 
+# DICE modules
+# ============
 from core.app_helper.file_operations import FileOperations
 
 

@@ -1,8 +1,12 @@
+# Standard Python modules
+# =======================
 import os
 import subprocess
 import queue
 from threading import Thread
 
+# External modules
+# ================
 from PyQt5.QtCore import pyqtSlot
 
 
