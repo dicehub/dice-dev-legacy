@@ -22,7 +22,7 @@ Rectangle {
         onAccepted: {
             var directoryPath = fileUrl.toString().substring(7) // remove "file://" from the url
             coreApp.setValue(currentEditedNodePath, currentEditedLabel, directoryPath)
-            listView.model = coreApp.settingsList(settingsTree.currentNodePath)
+//            listView.model = coreApp.settingsList(settingsTree.currentNodePath)
         }
     }
 

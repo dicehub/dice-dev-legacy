@@ -18,13 +18,13 @@ class Settings(CoreApp):
 
         self.__settings_tree = [
             {
-                'text': 'OpenFOAM230'
+                'text': 'OpenFOAM'
             },
             {
                 'text': 'ParaView'
             },
             {
-                'text': 'Dakota610'
+                'text': 'DAKOTA'
             }]
 
         settings_folder = os.path.join(os.path.expanduser("~"), ".config", "DICE")
@@ -59,7 +59,6 @@ class Settings(CoreApp):
         for app_name in self.__settings:
             if app_name == settings_path[0]:
                 for label, value in self.__settings[app_name].items():
-                    self.debug("settings "+label+ " " + value)
                     return [
                         {
                             'label': label,
@@ -73,6 +72,7 @@ class Settings(CoreApp):
         if app_name in self.__settings:
             self.__settings[app_name][label] = value
             self.__settings.write()
+            self.settings_tree_changed.emit()
 
     def value(self, app, settings_path):
         try:
