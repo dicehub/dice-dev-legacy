@@ -26,8 +26,14 @@ class DakotaApp(BasicApp):
 
         # Set Environment
         # ===============
-        os.environ['LD_LIBRARY_PATH'] += ":/home/ros/Programs/Dakota/dakota-6.1.0.Linux.x86_64/bin:/home/ros/Programs/Dakota/dakota-6.1.0.Linux.x86_64/lib"
-        os.environ['PATH'] += ':/home/ros/Programs/Dakota/dakota-6.1.0.Linux.x86_64/bin:/home/ros/Programs/Dakota/dakota-6.1.0.Linux.x86_64/test'
+        dakota_bin_path = self.dice.settings.value(self, ['DAKOTA', 'dakota'])[:-7]
+        dakota_lib_path = self.dice.settings.value(self, ['DAKOTA', 'dakota'])[:-10] + "lib"
+        dakota_test_path = self.dice.settings.value(self, ['DAKOTA', 'dakota'])[:-10] + "test"
+        os_dakota_ld_library_path = ":" + dakota_bin_path + ":" + dakota_lib_path
+        os_dakota_path = ":" + dakota_bin_path + ":" + dakota_test_path
+
+        os.environ['LD_LIBRARY_PATH'] += os_dakota_ld_library_path
+        os.environ['PATH'] += os_dakota_path
 
         f_args = [self.dice.settings.value(self, ['DAKOTA', 'dakota'])]
         f_args.extend(args)
