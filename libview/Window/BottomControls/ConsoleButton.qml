@@ -6,7 +6,7 @@ import DICE.Theme 1.0
 Rectangle {
     property bool newContent
 
-    width: 150
+    width: 180
 
     anchors.top: parent.top
     anchors.topMargin: 5
@@ -55,7 +55,7 @@ Rectangle {
             BasicText {
                 id: consoleButton
 
-                text: "Console"
+                text: "Application Output"
                 verticalAlignment: Text.AlignVCenter
                 anchors.fill: parent
                 anchors.leftMargin: 10
