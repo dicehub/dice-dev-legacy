@@ -26,6 +26,10 @@ Column {
 //        }
 //    }
 
+//    Loader {
+//        source: app.visType + ".qml"
+//    }
+
     Rectangle {
         id: root
 

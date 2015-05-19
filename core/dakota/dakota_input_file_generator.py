@@ -3,7 +3,7 @@
 from collections import OrderedDict
 
 
-class DakotaInputFileGenerator():
+class DakotaInputFileGenerator:
 
     def __init__(self, content):
 

@@ -85,5 +85,6 @@ DISTFILES += \
     ../core_apps/IDE/view/IDE.qml \
     ../libview/Material/TextField.qml \
     ../apps/OpenFOAM_230/Preprocessing/cfMesh/view/actions/SurfaceGenerateBoundingBox \
-    ../apps/Dakota_610/samplingExperiment/view/1_Overview/Content.qml
+    ../apps/Dakota_610/samplingExperiment/view/1_Overview/Content.qml \
+    ../apps/Dakota_610/samplingExperiment/view/main/3_Methods/Dace.qml
 

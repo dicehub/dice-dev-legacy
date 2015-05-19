@@ -23,3 +23,27 @@ class DakotaTableCsv:
             o = csv.writer(fout)
             for line in fin:
                 o.writerow(line.split())
+
+    def x1_data(self):
+        path = self.csv_file_full_path
+        x1_data_field = []
+        x1_data_field_floats = []
+        with open(path, 'r') as csv_file:
+            csv_data = csv.reader(csv_file)
+            for row in csv_data:
+                x1_data_field.append(row[2])
+        for i in x1_data_field[1:]:
+            x1_data_field_floats.append(float(i))
+        return x1_data_field_floats
+
+    def y1_data(self):
+        path = self.csv_file_full_path
+        y1_data_field = []
+        y1_data_field_floats = []
+        with open(path, 'r') as csv_file:
+            csv_data = csv.reader(csv_file)
+            for row in csv_data:
+                y1_data_field.append(row[3])
+        for i in y1_data_field[1:]:
+            y1_data_field_floats.append(float(i))
+        return y1_data_field_floats

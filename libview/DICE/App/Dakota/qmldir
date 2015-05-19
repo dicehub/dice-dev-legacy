@@ -1,0 +1,5 @@
+module DICE.App.Dakota
+
+DakotaValueConnector 1.0 DakotaValueConnector.qml
+
+DakotaValue 1.0 DakotaValue.qml

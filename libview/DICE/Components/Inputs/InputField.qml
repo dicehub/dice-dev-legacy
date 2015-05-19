@@ -163,6 +163,7 @@ FocusScope {
                     bottom: parent.bottom
                     bottomMargin: parent.height/2
                 }
+                visible: !input.readOnly
             }
 
             Rectangle {

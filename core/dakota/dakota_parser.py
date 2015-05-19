@@ -3,6 +3,8 @@
 import json
 from collections import OrderedDict
 
+from PyQt5.QtCore import qDebug
+
 # DICE modules
 # ============
 from core.tools.path_helper import PathHelper
@@ -11,7 +13,7 @@ from core.third_party.ply.lex import TOKEN
 from core.dakota.dakota_input_file_generator import DakotaInputFileGenerator
 
 
-class ParsedDakotaInputFile():
+class ParsedDakotaInputFile:
     """
     Input-File whose complete representation is read into
     memory, can be manipulated and afterwards written to disk.
@@ -77,8 +79,27 @@ class ParsedDakotaInputFile():
 
         return string
 
+    def __contains__(self,key):
+        return key in self.content
 
-class DakotaInputFileParser():
+    def __getitem__(self,key):
+        return self.content[key]
+
+    def __setitem__(self,key,value):
+        self.content[key]=value
+
+    def __delitem__(self,key):
+        del self.content[key]
+
+    def __len__(self):
+        return len(self.content)
+
+    def __iter__(self):
+        for key in self.content:
+            yield key
+
+
+class DakotaInputFileParser:
     """
     Parses a string that contains the contents of a Dakota-Input-File
     """
@@ -103,7 +124,7 @@ class DakotaInputFileParser():
         # ==============================================
         dp = DakotaParser()
         blocks_list = dp.parse(content)
-        # qDebug(str(blocks_list))
+        qDebug(str(blocks_list))
         print(blocks_list)
 
         # Sort the list according to the dakota specs in dakota.json
@@ -292,9 +313,9 @@ class SortedBlock(DakotaSpecs, PathHelper):
         self.sort_dicts()
 
         # print('SORTED', self.sorted_blocks)
-        # with open('/home/test/dice/TestProject/run/samplingExperiment_1/sorted_blocks.json', 'w') as outfile:
-        #      json.dump(self.sorted_blocks, outfile, sort_keys = False, indent = 4,
-        # ensure_ascii=False)
+        with open('/home/test/dice/TestProject/run/samplingExperiment_1/sorted_blocks.json', 'w') as outfile:
+             json.dump(self.sorted_blocks, outfile, sort_keys = False, indent = 4,
+        ensure_ascii=False)
 
         # print('ENV', self.sorted_blocks['environment'])
 
@@ -323,7 +344,7 @@ class SortedBlock(DakotaSpecs, PathHelper):
             for key in block_dict:
                 key_path = self.find_key_path(self.dakota_specs, key)[0]
                 value = block_dict[key]
-                print(key_path)
+                # qDebug(str(key_path))
                 if len(key_path) != 0:
                     self.__create_dict(self.sorted_blocks, key_path, value)
                 else:
@@ -377,7 +398,7 @@ class SortedBlock(DakotaSpecs, PathHelper):
 
         elif isinstance(node, dict):
             if '@id' in node:
-                if node["@id"] == value:
+                if node["@name"] == value:
                     return [value], True
 
             if 'alias' in node:
@@ -388,7 +409,7 @@ class SortedBlock(DakotaSpecs, PathHelper):
             for elem in node:
                 tmp_path, found = self.find_key_path(node[elem], value)
 
-                if found and '@id' in node and self.__is_in_parsed_block_list(node['@id']):
+                if found and '@name' in node and self.__is_in_parsed_block_list(node['@id']):
                     # check if it is actually an alias and not an id
                     # ==============================================
                     # if self.__alias_is_used(node['@id']):
@@ -396,7 +417,7 @@ class SortedBlock(DakotaSpecs, PathHelper):
                     #         if '@name' in node['alias']:
                     #             path = [node['alias']['@name']] + tmp_path
                     # else:
-                    path = [node['@id']] + tmp_path
+                    path = [node['@name']] + tmp_path
                     return path, found
                 elif found:
                     path = tmp_path

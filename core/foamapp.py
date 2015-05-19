@@ -33,7 +33,6 @@ class FoamApp(BasicApp):
         file_name, var_path = self.split_path(path)
         if file_name in self.foam_files:
             var = self.foam_files[file_name]
-            self.debug(value)
             py_foam_var = self.get_dict_by_path(var, var_path)
             try:
                 py_foam_var[var_path[-1]] = value
@@ -166,6 +165,7 @@ class FoamApp(BasicApp):
 
     def foam_exec(self, args, stdout=None, stderr=None, cwd=None):
         f_args = [self.dice.settings.value(self, ['OpenFOAM', 'foamExec'])]
+        f_args.extend(args)
         result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd)
         return result
 

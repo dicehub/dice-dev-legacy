@@ -42,7 +42,7 @@ PythonLoader::PythonLoader(QObject *parent) : QObject(parent)
         Py_Initialize();
         QStringList paths = {sysPath+"/thirdparty/Python/lib/python3.4", sysPath+"/thirdparty/Python/lib/python3.4/plat-linux",
                              sysPath+"/thirdparty/Python/lib/python3.4/lib-dynload", sysPath+"/thirdparty/Python/lib/python3.4/site-packages",
-                            sysPath, sysPath+"/thirdparty/Python/lib"};
+                            sysPath, sysPath+"/thirdparty/Python/lib", sysPath+"/thirdparty/Python/bin"};
         QString wholePath = paths.join(":");
         PySys_SetPath(wholePath.toStdWString().c_str());
 
