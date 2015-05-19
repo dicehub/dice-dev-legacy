@@ -56,12 +56,12 @@ class ParsedDakotaInputFile:
         """
         writes the file from memory
         """
-        if self.name != None:
-            if content != None:
+        if self.name is not None:
+            if content is not None:
                 self.content = content
-            if self.content != None:
+            if self.content is not None:
                 txt = str(self)
-                with open(self.name, 'w') as f:
+                with open(self.name+"_1", 'w') as f:
                     f.write(txt)
 
     def __str__(self):
@@ -140,10 +140,10 @@ class DakotaSpecs(PathHelper):
 
     def __init__(self):
 
-        # with open("/home/ros/Projects/SSP/gitHub/dice-dev/core/dakota/dakota.json", "r") as file:
-        #     self.dakota_specs = json.load(file)["input"]["keyword"]
-        with open(self.module_path("dakota.json"), "r") as file:
+        with open("/home/ros/Projects/SSP/gitHub/dice-dev/core/dakota/dakota.json", "r") as file:
             self.dakota_specs = json.load(file)["input"]["keyword"]
+        # with open(self.module_path("dakota.json"), "r") as file:
+        #     self.dakota_specs = json.load(file)["input"]["keyword"]
 
     def get_specs(self):
         return self.dakota_specs
@@ -309,11 +309,11 @@ class SortedBlock(DakotaSpecs, PathHelper):
         # sorted result for DICE
         # ======================
         # self.sorted_blocks = DictProxy()
-        self.sorted_blocks = OrderedDict()
+        self.sorted_blocks = []
         self.sort_dicts()
 
         # print('SORTED', self.sorted_blocks)
-        with open('/home/test/dice/TestProject/run/samplingExperiment_1/sorted_blocks.json', 'w') as outfile:
+        with open('/home/test/dice/TestProject/config/samplingExperiment_1/sorted_blocks.json', 'w') as outfile:
              json.dump(self.sorted_blocks, outfile, sort_keys = False, indent = 4,
         ensure_ascii=False)
 
@@ -330,12 +330,13 @@ class SortedBlock(DakotaSpecs, PathHelper):
 
         # run one time to setup top structure list
         # ========================================
-        # for block_dict in self.parsed_dicts_list:
-        #     for key in block_dict:
-        #         self.blocks_key_list.append(key)
-        #         if self.is_top_node(key):
-        #             self.sorted_blocks.append(block_dict)
-        # print(self.sorted_blocks)
+        for block_dict in self.parsed_dicts_list:
+            for key in block_dict:
+                self.blocks_key_list.append(key)
+                if self.is_top_node(key):
+                    block_dict[key] = OrderedDict()
+                    self.sorted_blocks.append(block_dict)
+        print(self.sorted_blocks)
 
         # create key-path dict for the rest
         # =================================
@@ -346,46 +347,53 @@ class SortedBlock(DakotaSpecs, PathHelper):
                 value = block_dict[key]
                 # qDebug(str(key_path))
                 if len(key_path) != 0:
-                    self.__create_dict(self.sorted_blocks, key_path, value)
+                    self.__create_dict(self.sorted_blocks, key_path, key, value)
                 else:
                     # qDebug('Warning: Unknown key: ' + key)
                     self.__create_dict(self.sorted_blocks, ['unparsed', key], value)
 
-    def __create_dict(self, block_dict, key_path, value):
+    def __create_dict(self, block_dict, key_path, key, value):
         head, *tails = key_path
-        if not tails:
-            if head not in block_dict:
-                # block_dict[head] = DictProxy()
-                # block_dict[head]['child'] = DictProxy()
-                # block_dict[head]['value'] = value
-                block_dict[head] = OrderedDict({
-                    'child': OrderedDict(),
-                    'value': value
-                })
-            return
-        try:
-            self.__create_dict(block_dict[head]['child'], tails, value)
-        except KeyError:
-            # block_dict[head] = DictProxy()
-            # block_dict[head]['child'] = DictProxy()
-            # block_dict[head]['value'] = ''
-            block_dict[head] = OrderedDict({
-                'child': OrderedDict(),
-                'value': ''
-            })
-            self.__create_dict(block_dict[head]['child'], tails, value)
+        for i, k in enumerate(self.sorted_blocks):
+            for keyword in k:
+                if keyword == head and tails:
+                    block_dict[i][head][key] = value
 
+    # def __create_dict(self, block_dict, key_path, value):
+    #     head, *tails = key_path
+    #     if not tails:
+    #         if head not in block_dict:
+    #             # block_dict[head] = DictProxy()
+    #             # block_dict[head]['child'] = DictProxy()
+    #             # block_dict[head]['value'] = value
+    #             block_dict[head] = OrderedDict({
+    #                 'child': OrderedDict(),
+    #                 'value': value
+    #             })
+    #         return
+    #     try:
+    #         self.__create_dict(block_dict[head]['child'], tails, value)
+    #     except KeyError:
+    #         # block_dict[head] = DictProxy()
+    #         # block_dict[head]['child'] = DictProxy()
+    #         # block_dict[head]['value'] = ''
+    #         block_dict[head] = OrderedDict({
+    #             'child': OrderedDict(),
+    #             'value': ''
+    #         })
+    #         self.__create_dict(block_dict[head]['child'], tails, value)
+    #
     def is_top_node(self, keyword):
         for keyword_dict in self.dakota_specs:
             if keyword_dict["@name"] == keyword:
                 return True
-
-    def is_in_specs(self, keyword):
-        for keyword_dict in self.dakota_specs:
-            if keyword_dict["@name"] == keyword:
-                return True
-            else:
-                return False
+    #
+    # def is_in_specs(self, keyword):
+    #     for keyword_dict in self.dakota_specs:
+    #         if keyword_dict["@name"] == keyword:
+    #             return True
+    #         else:
+    #             return False
 
     def find_key_path(self, node, value, path=[], found=False):
 
@@ -456,5 +464,5 @@ class SortedBlock(DakotaSpecs, PathHelper):
 # sb = SortedBlock(blocks)
 # print(sb.get())
 
-# dif = ParsedDakotaInputFile("/home/test/dice/TestProject/run/samplingExperiment_1/input.in")
-# print(dif.content)
+dif = ParsedDakotaInputFile("/home/test/dice/TestProject/config/samplingExperiment_1/input.in")
+print(dif.content)

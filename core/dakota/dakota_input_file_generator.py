@@ -18,10 +18,13 @@ class DakotaInputFileGenerator:
 
         # First level (Main blocks: 'environment, model, interface, ...')
         # ===============================================================
-        for k in self.content:
-            if type(self.content[k]) == OrderedDict:
-                result += "{indent}{0}{1}\n".format(k, self.content[k]['value'], indent=0*" ")
-                result += self.dict_to_string(self.content[k]['child'])
+        for i, k in enumerate(self.content):
+            # print(k)
+            if type(k) == dict:
+                for keyword in k:
+                    print(keyword)
+                    result += "{indent}{0}\n".format(keyword, indent=0*" ")
+                    result += self.dict_to_string(self.content[i][keyword])
             result += '\n'
 
         return result
@@ -30,24 +33,22 @@ class DakotaInputFileGenerator:
         string = ""
 
         for keyword in data:
-            if type(data[keyword]['value']) == str and data[keyword]['value'] == '':
-                string += "{indent}{0}{1}\n".format(keyword, data[keyword]['value'], indent=indent*" ")
-            elif type(data[keyword]['value']) == str:
-                string += "{indent}{0} = '{1}'\n".format(keyword, data[keyword]['value'], indent=indent*" ")
-            elif type(data[keyword]['value']) in [int, float]:
-                string += "{indent}{0} = {1}\n".format(keyword, data[keyword]['value'], indent=indent*" ")
-            elif type(data[keyword]['value']) == list:
+            if type(data[keyword]) == str and data[keyword] == '':
+                string += "{indent}{0}{1}\n".format(keyword, data[keyword], indent=indent*" ")
+            elif type(data[keyword]) == str:
+                string += "{indent}{0} = '{1}'\n".format(keyword, data[keyword], indent=indent*" ")
+            elif type(data[keyword]) in [int, float]:
+                string += "{indent}{0} = {1}\n".format(keyword, data[keyword], indent=indent*" ")
+            elif type(data[keyword]) == list:
                 list_string = ""
-                for i in data[keyword]['value']:
+                for i in data[keyword]:
                     if type(i) in [int, float]:
                         list_string += str(i) + "    "
                     elif type(i) == str:
                         list_string += "'" + str(i) + "'" + "    "
                 string += "{indent}{0}     {1}\n".format(keyword, list_string, indent=indent*" ")
             else:
-                string += "{indent}{0} {1}\n".format(keyword, data[keyword]['value'], indent=indent*" ")
-            if 'child' in data[keyword]:
-                string += self.dict_to_string(data[keyword]['child'], indent*2)
+                string += "{indent}{0} {1}\n".format(keyword, data[keyword], indent=indent*" ")
 
         return string
 
