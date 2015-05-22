@@ -289,7 +289,6 @@ void vtkQFBORenderer::destroy()
     qDebug() << "FBO is destroyed";
     this->renderer->RemoveAllViewProps();
     this->renderWindow->RemoveRenderer(this->renderer);
-    this->deleteLater();
 }
 
 void vtkQFBORenderer::highlightPickedActor(vtkActor *pickedActor)
