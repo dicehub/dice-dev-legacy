@@ -7,10 +7,10 @@ environment
     
 method
    id_method = 'method1'
-    dace lhs
-
-      samples = 20
-      seed    = 52
+   dace 
+   lhs
+   samples = 42
+   seed    = 42
 
 model
   single

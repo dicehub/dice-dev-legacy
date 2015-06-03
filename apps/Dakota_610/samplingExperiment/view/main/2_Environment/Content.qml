@@ -8,12 +8,12 @@ Body {
         Subheader { text: "Environment Information" }
         DakotaValue {
             label: "Tabular Graphics File"
-            path: "environment tabular_graphics_file"
+            path: "input.in environment tabular_graphics_file"
             readOnly: true
         }
         DakotaValue {
             label: "Method Pointer"
-            path: "environment method_pointer"
+            path: "input.in environment method_pointer"
             readOnly: true
         }
     }

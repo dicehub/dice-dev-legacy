@@ -14,9 +14,7 @@ Rectangle {
     }
 
     onReloadWebEngineChanged: {
-        print(reloadWebEngine)
         if (reloadWebEngine) {
-            print("Reload")
             webEngineView.reload()
         }
     }
@@ -32,10 +30,20 @@ Rectangle {
 
         anchors.fill: parent
         onWidthChanged: {
-            app.setPlotWidth(width*0.95)
+            runJavaScript(changePlotSize(webEngineView.width, webEngineView.height))
         }
         onHeightChanged: {
-            app.setPlotHeight(height*0.90)
+            runJavaScript(changePlotSize(webEngineView.width, webEngineView.height))
         }
+        onLoadingChanged: {
+            if (!loading) {
+                runJavaScript(changePlotSize(webEngineView.width, webEngineView.height))
+            }
+        }
+    }
+
+    function changePlotSize(width, height) {
+        return "Bokeh.Collections('Plot').at(0).set('plot_width'," + width*0.95 + ");"
+        + "Bokeh.Collections('Plot').at(0).set('plot_height'," + height*0.9 + ");"
     }
 }

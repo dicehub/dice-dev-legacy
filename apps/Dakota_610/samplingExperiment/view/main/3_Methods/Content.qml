@@ -6,19 +6,25 @@ import DICE.App.Dakota 1.0
 Body {
     Card {
         Subheader { text: "Choose Method" }
-        DropDown {
+        DakotaKeywordDropDown {
             id: selectedExperiment
             label: "Method"
+            path: "input.in method"
+            modelPath: "method_types"
             methodName: "experiment_method"
-            getModelMethod: "get_experiment_method_model"
         }
     }
+
     Card {
-        enabled: selectedExperiment.currentText !== 'none'
+        enabled: selectedExperiment.currentRealText !== 'none'
         visible: enabled
 
-        Subheader { text: selectedExperiment.currentText + " - Settings" }
+        Subheader { text: selectedExperiment.currentRealText + " - Settings" }
         Dace {}
+        Sampling {}
+        Fsu_cvt {}
+        Fsu_quasi_mc {}
+        Psuade_moat {}
     }
 }
 

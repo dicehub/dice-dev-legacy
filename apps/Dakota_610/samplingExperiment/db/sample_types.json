@@ -1,0 +1,4 @@
+{
+  "dace": ["box_behnken", "central_composite", "grid", "lhs", "oa_lhs", "oas", "random"],
+  "sampling": ["random", "lhs"]                         
+}

@@ -8,6 +8,8 @@ Visualization
 from bokeh.plotting import *
 from PyQt5.QtCore import pyqtProperty, pyqtSlot, pyqtSignal
 from bokeh.models.renderers import GlyphRenderer
+from bokeh.embed import autoload_static
+from bokeh.resources import Resources
 
 
 class Visualization:
@@ -28,7 +30,7 @@ class Visualization:
     def visualization_load(self):
 
         self.__plot_html_path = self.config_path(self.page_name)
-        output_file(self.__plot_html_path)
+        output_file(self.__plot_html_path, mode="absolute")
 
         self.p1 = figure(plot_width=self.default_plot_width,
                          plot_height=self.default_plot_height,
@@ -36,6 +38,7 @@ class Visualization:
         self.p1.scatter(self.x1, self.y1, size=12, color="red", alpha=0.5)
         self.p1.toolbar_location = None
         save(self.p1)
+
 
     # HTML Path
     # =========
@@ -53,28 +56,24 @@ class Visualization:
 
     plotHTMLPath = pyqtProperty(str, fget=plot_html_path.fget, fset=plot_html_path.fset, notify=plot_html_path_changed)
 
-    # Figure Size
-    # ===========
-    def change_plot_size(self, width, height):
-        self.p1.plot_height = width
-        self.p1.plot_width = height
-        self.reload_plot()
-
-    @pyqtSlot(int, name="setPlotWidth")
-    def set_plot_width(self, width):
-        self.p1.plot_width = width
-        self.reload_plot()
-
-    @pyqtSlot(int, name="setPlotHeight")
-    def set_plot_heighth(self, height):
-        self.p1.plot_height = height
-        self.reload_plot()
+    # # Create js and tag
+    # # =================
+    # def create_js_tag(self):
+    #     js, tag = autoload_static(self.p1, Resources(mode="absolute"), self.config_path("plot.js"))
+    #     with open(self.config_path("plot.js"), "w") as file:
+    #         file.write(js)
+    #
+    #     html_content = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Test plot</title></head><body><div id="9fe4daf9-51ec-4a04-a625-d9d6c84217a9">' + tag + '</div></body></html>'
+    #     with open(self.config_path("plot.html"), "w") as file:
+    #         file.write(html_content)
 
     # Reload plot
     # ===========
     @pyqtSlot(name="reload")
     def reload_plot(self):
         self.reload_web_engine = False
+        import time
+        time.sleep(0.1)
         save(self.p1)
         # self.plot_html_path = self.config_path(self.page_name)
         self.reload_web_engine = True
