@@ -1,3 +1,5 @@
+# External modules
+# ================
 from PyQt5.QtQml import QJSValue
 from PyQt5.QtCore import qDebug
 
@@ -26,5 +28,4 @@ def convert_object_to_qjsvalue(obj, jsengine):
         try:
             return QJSValue(obj)
         except TypeError:
-            qDebug("unknown type: "+str(obj))
             return QJSValue()

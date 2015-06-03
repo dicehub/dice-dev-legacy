@@ -20,6 +20,8 @@ PythonValueConnector {
     property bool loadingModel: false
     property bool __internalChange: false
 
+    property string currentRealText // the real confirmed value after the change event
+
     onModelPathChanged: {
         loadModel()
     }
@@ -57,6 +59,7 @@ PythonValueConnector {
                     currentIndex = i
                     __internalChange = false
                 }
+                currentRealText = model.get(currentIndex)[textRole]
                 return
             }
         }
@@ -68,5 +71,4 @@ PythonValueConnector {
         var text = model.get(currentIndex)[textRole]
         setValue(text)
     }
-
 }

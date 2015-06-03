@@ -18,18 +18,6 @@ Body {
             maxHeight: 300
             width: parent.width
             modelData: app.treeViewModel
-            onCurrentNodeChanged: {
-                print("Current text: " + treeView.currentNode.text)
-                print("Current type: " + treeView.currentNode.model.type)
-//                visItem.pickedPatch = currentNode.text
-            }
-//            property Connections visConnection: Connections {
-//                target: visItem
-//                onPickedPatchChanged: {
-//                    if (treeView.currentNode.text !== visItem.pickedPatch)
-//                        treeView.setCurrentNode(visItem.pickedPatch)
-//                }
-//            }
             menu: RightClickMenu {}
         }
     }

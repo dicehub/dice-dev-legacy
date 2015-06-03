@@ -21,7 +21,7 @@ QtObject {
 
     property var callParameter
 
-    property bool enabled: false
+    property bool enabled
 
     property var value
     property var __oldValue: null  // stored the old value to prevent setting a value twice
@@ -81,8 +81,13 @@ QtObject {
 
         if (!validGetMethod || !enabled) return
 
-        if (!!callParameter)
-            var callPath = callParameter.split(" ").slice(1) // get the "var_path"
+        var callPath
+        if (!!callParameter) {
+            if (typeof(callParameter) === 'object') // special if callParameter is a list
+                callPath = callParameter[0].split(" ").slice(1)
+            else
+                callPath = callParameter.split(" ").slice(1) // get the "var_path"
+        }
         else
             callPath = ""
 

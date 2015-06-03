@@ -117,6 +117,7 @@ class IDE(CoreApp, DictHelper):
     def get_data_by_url(self, app, help_path):
         file_name, path = self.split_path(help_path)
         file_name = file_name.replace("foam/", "") # based on help_path: "foam/+path", "foam/" needs to be removed
+        file_name = file_name.replace("dakota/", "") # based on help_path: "dakota/+path", "dakota/" needs to be removed
 
         app_local_path = os.path.join(app.config_path(), file_name)
         self.current_edited_file_path = app_local_path

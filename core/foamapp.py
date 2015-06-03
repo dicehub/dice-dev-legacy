@@ -73,7 +73,7 @@ class FoamApp(BasicApp):
         if file_name in self.foam_files:
             var = self.foam_files[file_name]
             try:
-                self.get_value_by_path(var, var_path)
+                self.get_value_by_path(var, var_path) # value needs to exist
                 return True
             except KeyError:
                 return False

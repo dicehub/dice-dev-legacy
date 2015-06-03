@@ -557,7 +557,7 @@ class BasicApp(QObject, QMLHelper, VisApp, ProcessRunner, FileOperations, DictHe
         Asynchronous method calling.
         :param method_name:
         :param arguments:
-        :param on_success:
+        :param on_success: js callback function
         :return:
         """
         self.__worker.queue.put((method_name, arguments, on_success))

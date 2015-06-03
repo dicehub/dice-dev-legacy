@@ -1,7 +1,7 @@
 # Standard Python modules
 # =======================
 from collections import OrderedDict
-
+from PyQt5.QtCore import qDebug
 
 class DakotaInputFileGenerator:
 
@@ -19,20 +19,24 @@ class DakotaInputFileGenerator:
         # First level (Main blocks: 'environment, model, interface, ...')
         # ===============================================================
         for i, k in enumerate(self.content):
-            # print(k)
             if type(k) == dict:
                 for keyword in k:
-                    print(keyword)
                     result += "{indent}{0}\n".format(keyword, indent=0*" ")
                     result += self.dict_to_string(self.content[i][keyword])
             result += '\n'
 
         return result
 
-    def dict_to_string(self, data, indent=3):
+    @staticmethod
+    def dict_to_string(data, indent=3):
         string = ""
 
+
+        # qDebug("/n")
+        # qDebug(str(data))
+
         for keyword in data:
+            # qDebug(str(keyword))
             if type(data[keyword]) == str and data[keyword] == '':
                 string += "{indent}{0}{1}\n".format(keyword, data[keyword], indent=indent*" ")
             elif type(data[keyword]) == str:
@@ -51,7 +55,3 @@ class DakotaInputFileGenerator:
                 string += "{indent}{0} {1}\n".format(keyword, data[keyword], indent=indent*" ")
 
         return string
-
-
-
-

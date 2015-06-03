@@ -16,7 +16,7 @@ FocusScope {
     property alias checked: sw.checked
 
     width: parent.width
-    height: column.height
+    height: Math.max(row.height, column.height)
 
     MouseArea {
        anchors.fill: parent
@@ -43,7 +43,7 @@ FocusScope {
             id: row
 
             width: parent.width
-            height: Math.max(uncheckedText.implicitHeight, checkedText.implicitHeight, sw.height) + 10
+            height: Math.max(uncheckedText.height, checkedText.height, sw.height) + 10
             spacing: 10
 
             CaptionText {

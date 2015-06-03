@@ -3,6 +3,7 @@ import DICE.App 1.0
 ToggleButton {
     id: root
 
+
     property string path
 
     property alias methodName: __valueConnector.methodName
@@ -13,6 +14,8 @@ ToggleButton {
     property alias callParameter: __valueConnector.callParameter
 
     property string helpPath: "foam/"+path
+
+    width: parent.width
 
     onActiveFocusChanged: {
         if (activeFocus) {

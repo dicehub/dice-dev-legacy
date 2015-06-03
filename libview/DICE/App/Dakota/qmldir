@@ -2,4 +2,9 @@ module DICE.App.Dakota
 
 DakotaValueConnector 1.0 DakotaValueConnector.qml
 
+DakotaKeywordCheck 1.0 DakotaKeywordCheck.qml
 DakotaValue 1.0 DakotaValue.qml
+DakotaKeyword 1.0 DakotaKeyword.qml
+
+
+DakotaKeywordDropDown 1.0 DakotaKeywordDropDown.qml

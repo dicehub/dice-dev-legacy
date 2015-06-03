@@ -23,7 +23,6 @@ FocusScope {
 
     property alias callParameter: __dropDownConnector.callParameter
 
-
     // Model fetching from python side
     // ===============================
     property alias modelMethodName: __dropDownConnector.modelMethodName
@@ -31,6 +30,8 @@ FocusScope {
     property alias changeSignalModelMethod: __dropDownConnector.changeSignalModelMethod
 
     property alias modelPath: __dropDownConnector.modelPath
+
+    property string currentRealText: __dropDownConnector.currentRealText
 
     width: parent.width
     height: comboBox.height + 15
@@ -68,7 +69,7 @@ FocusScope {
 
             width: parent.width - label.width
             focus: true
-            enabled: root.enabled && ! dropDownConnector.loadingModel
+            enabled: root.enabled && !dropDownConnector.loadingModel
             model: dropDownConnector.model
             onCurrentIndexChanged: dropDownConnector.currentIndex = currentIndex
             currentIndex: dropDownConnector.currentIndex

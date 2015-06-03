@@ -34,6 +34,10 @@ FocusScope {
         id: valueConnector
 
         enabled: valueField.input.enabled
+
+        onPathChanged: {
+            print("VAL "+valueConnector.value)
+        }
     }
 
     MouseArea {
@@ -127,7 +131,7 @@ FocusScope {
             label: ""
             focus: true
 
-            enabled: root.enabled
+            enabled: root.enabled && valueConnector.notOptionalOrEnabled
             valueConnector: valueConnector
             warnIfEmpty: valueConnector.notOptionalOrEnabled
 
