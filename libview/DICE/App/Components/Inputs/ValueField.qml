@@ -60,23 +60,6 @@ FocusScope {
             text = valueConnector.value !== undefined ? valueConnector.value : ""
         }
 
-//        text: {
-//////            valueConnector.value !== undefined ? valueConnector.value : ""
-//////            print("TXT "+typeof(text))
-//            if ((text.indexOf(".") !==-1 || text.indexOf("e") !==-1 || text.indexOf("E") !== -1
-//                 || input.text === "-" || input.text === "+" || input.text === "."
-//                 || text.indexOf("0") !==-1) && root.focus && text.indexOf(",") ==-1)
-//                text
-//            else
-//                valueConnector.value !== undefined ? valueConnector.value : ""
-//        }
-//        text: {
-//            if ((text.indexOf(".") !==-1 ) && root.focus && text.indexOf(",") ==-1)
-//                text
-//            else
-//                valueConnector.value !== undefined ? valueConnector.value : ""
-//        }
-
         onTextChanged: {
             currentEnteredCharachter = text.slice(-1)
             if (currentEnteredCharachter === ",")
