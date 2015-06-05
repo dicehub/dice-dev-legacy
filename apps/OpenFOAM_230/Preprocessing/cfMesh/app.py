@@ -264,7 +264,7 @@ class cfMesh(FoamApp, SurfaceGenerateBoundingBox, ObjectRefinements, Visualizati
     ==============
     '''
     def open_paraview(self):
-        paraview = self.dice.settings.value(self, 'paraview')
+        paraview = self.dice.settings.value(self, ['ParaView', 'paraview'])
         current_foam_path = self.current_run_path("view.foam")
         if not os.path.exists(current_foam_path):
             with open(current_foam_path, 'a'):

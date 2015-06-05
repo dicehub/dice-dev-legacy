@@ -280,7 +280,7 @@ class STL_Import(FoamApp, SurfaceCheck, SurfaceOrient,
         self.run_copy_object_file(src)
 
     def open_paraview(self):
-        paraview = self.dice.settings.value(self, 'paraview')
+        paraview = self.dice.settings.value(self, ['ParaView', 'paraview'])
         current_foam_path = self.current_run_path("view.foam")
         self.run_process([paraview, current_foam_path])
 
