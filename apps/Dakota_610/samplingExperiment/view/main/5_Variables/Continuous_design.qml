@@ -21,8 +21,8 @@ Card {
     }
 
     DakotaValue {
-//        enabled: !!treeView.currentNode
-//        visible: enabled
+        enabled: !!treeView.currentNode
+        visible: enabled
         label: "Lower Bound"
         path: "input.in variables lower_bounds " + treeView.currentNode.model.index
         onPathChanged: {
@@ -30,8 +30,8 @@ Card {
         }
     }
     DakotaValue {
-//        enabled: !!treeView.currentNode
-//        visible: enabled
+        enabled: !!treeView.currentNode
+        visible: enabled
         label: "Upper Bound"
         path: "input.in variables upper_bounds " + treeView.currentNode.model.index
     }

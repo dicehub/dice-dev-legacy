@@ -40,6 +40,9 @@ FocusScope {
         id: input
         label: "X"
 
+        property string valueConnectorValue: valueConnector.value
+        property string currentEnteredCharachter
+
         focus: true
 
         width: parent.width
@@ -48,17 +51,38 @@ FocusScope {
         centerLabel: false
         validator: dataType === "double" ? doubleValidator : intValidator
 
-        text: {
-            valueConnector.value !== undefined ? valueConnector.value : ""
+
+        onValueConnectorValueChanged: {
+            if (currentEnteredCharachter === ".")  // so when deleting from 0.2 to 0. doesn't delete "."-char too
+                return
+            if (text.indexOf("e") !==-1 || text.indexOf("E") !== -1)
+                return
+            text = valueConnector.value !== undefined ? valueConnector.value : ""
+        }
+
+//        text: {
+//////            valueConnector.value !== undefined ? valueConnector.value : ""
+//////            print("TXT "+typeof(text))
 //            if ((text.indexOf(".") !==-1 || text.indexOf("e") !==-1 || text.indexOf("E") !== -1
 //                 || input.text === "-" || input.text === "+" || input.text === "."
-//                 || text.indexOf("0.") !==-1) && root.focus && text.indexOf(",") ==-1)
+//                 || text.indexOf("0") !==-1) && root.focus && text.indexOf(",") ==-1)
 //                text
 //            else
 //                valueConnector.value !== undefined ? valueConnector.value : ""
-        }
+//        }
+//        text: {
+//            if ((text.indexOf(".") !==-1 ) && root.focus && text.indexOf(",") ==-1)
+//                text
+//            else
+//                valueConnector.value !== undefined ? valueConnector.value : ""
+//        }
 
         onTextChanged: {
+            currentEnteredCharachter = text.slice(-1)
+            if (currentEnteredCharachter === ",")
+                input.text = input.text.slice(0,-1) + "."
+            if ((text.indexOf("e") !==-1 || text.indexOf("E") !== -1) && currentEnteredCharachter === ".")
+                input.text = input.text.slice(0,-1)
             if (input.text === "-" || input.text === "+" || input.text === ".")
                 return
 

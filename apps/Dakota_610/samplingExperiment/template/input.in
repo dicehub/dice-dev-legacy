@@ -17,10 +17,10 @@ model
 
 variables,
   continuous_design = 2
-    cdv_lower_bounds      0.0    0.0
-    cdv_upper_bounds      1.0    1.0
+    lower_bounds      0.0    0.0
+    upper_bounds      1.0    1.0
 
-    cdv_descriptors       'x1'   'x2'
+    descriptors       'x1'   'x2'
 
     
 interface
