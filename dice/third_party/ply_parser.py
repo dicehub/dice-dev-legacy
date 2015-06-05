@@ -3,8 +3,8 @@ Most of this class was shamelessly stolen from the examples"""
 
 import os
 
-import core.third_party.ply.lex as lex
-import core.third_party.ply.yacc as yacc
+import dice.third_party.ply.lex as lex
+import dice.third_party.ply.yacc as yacc
 
 
 class PlyParser(object):

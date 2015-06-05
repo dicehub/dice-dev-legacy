@@ -4,7 +4,7 @@ import os
 
 # DICE modules
 # ============
-from core.app import BasicApp
+from dice.app import BasicApp
 
 
 class DakotaApp(BasicApp):

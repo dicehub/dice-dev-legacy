@@ -7,10 +7,10 @@ from PyQt5.QtCore import qDebug
 
 # DICE modules
 # ============
-from core.tools.path_helper import PathHelper
-from core.third_party.ply_parser import PlyParser
-from core.third_party.ply.lex import TOKEN
-from core.dakota.dakota_input_file_generator import DakotaInputFileGenerator
+from dice.tools.path_helper import PathHelper
+from dice.third_party.ply_parser import PlyParser
+from dice.third_party.ply.lex import TOKEN
+from dice.dakota.dakota_input_file_generator import DakotaInputFileGenerator
 
 
 class ParsedDakotaInputFile:

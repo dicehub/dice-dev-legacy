@@ -4,7 +4,7 @@ from PyQt5.QtCore import QUrl, pyqtSlot
 
 # DICE modules
 # ============
-from core.app import BasicApp
+from dice.app import BasicApp
 
 
 class FoamApp(BasicApp):

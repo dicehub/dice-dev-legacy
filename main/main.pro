@@ -3,9 +3,9 @@ TEMPLATE = app
 
 # Add more folders to ship with the application, here
 
-folder_core.source = ../core
-folder_core.target = ..
-DEPLOYMENTFOLDERS += folder_core
+folder_dice.source = ../dice
+folder_dice.target = ..
+DEPLOYMENTFOLDERS += folder_dice
 
 folder_core_apps.source = ../core_apps
 folder_core_apps.target = ..

@@ -4,7 +4,7 @@ from PyQt5.QtCore import pyqtProperty, pyqtSignal
 
 # DICE modules
 # ============
-from core.dice.vis import BoxWrapper
+from dice.dice.vis import BoxWrapper
 
 
 class MultiPatchBoxWrapper(BoxWrapper):

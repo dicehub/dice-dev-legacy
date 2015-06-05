@@ -10,7 +10,7 @@ from PyQt5.QtQuick import QQuickItem
 
 # DICE modules
 # ============
-from core.app_helper.file_operations import FileOperations
+from dice.app_helper.file_operations import FileOperations
 
 
 class CoreApp(QObject, FileOperations):

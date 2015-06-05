@@ -1,5 +1,5 @@
 from sys import stderr
-from core.app import BasicApp
+from dice.app import BasicApp
 from threading import _start_new_thread
 
 def debug(msg):

@@ -14,7 +14,7 @@ from threading import Thread
 
 # DICE modules
 # ============
-from core.app import BasicApp
+from dice.app import BasicApp
 
 
 class BashTerminal(BasicApp):

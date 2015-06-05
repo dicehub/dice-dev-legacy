@@ -124,8 +124,7 @@ QtObject {
 
         // call setMethod only if the value is not what we just received from getMethod
         if (validSetMethod && newValue !== __oldValue) {
-            app.call(setMethod, extraPar([newValue]), function(){})
-            root.value = ""+newValue
+            app.call(setMethod, extraPar([newValue]), function(){root.value = ""+newValue})
         }
 
         __oldValue = newValue

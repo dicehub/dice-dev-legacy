@@ -20,9 +20,9 @@ from PyQt5.QtCore import pyqtProperty, pyqtSlot, pyqtSignal,QAbstractListModel
 
 # DICE modules
 # ============
-from core.dakota.dakotaapp import DakotaApp
-from core.dakota.dakota_table_csv import DakotaTableCsv
-from core.dakota.dakota_parser import ParsedDakotaInputFile
+from dice.dakota.dakota_app import DakotaApp
+from dice.dakota.dakota_table_csv import DakotaTableCsv
+from dice.dakota.dakota_parser import ParsedDakotaInputFile
 
 # App modules
 # ============

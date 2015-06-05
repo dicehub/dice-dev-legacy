@@ -19,9 +19,9 @@ from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 
 # DICE modules
 # ============
-from core.foamapp import FoamApp
-from core.dice.vis import STLLoader, FoamMeshLoader
-from core.foam.foam_mesh import FoamMesh
+from dice.foam_app import FoamApp
+from dice.dice.vis import STLLoader, FoamMeshLoader
+from dice.foam.foam_mesh import FoamMesh
 
 # App modules
 # ============

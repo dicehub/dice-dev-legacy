@@ -13,9 +13,9 @@ from PyQt5.QtQuick import QQuickItem
 
 # DICE modules
 # ============
-from core.dice.core_app import CoreApp
-from core.dice.tools.json_sync import JsonOrderedDict
-from core.app import BasicApp
+from dice.dice.core_app import CoreApp
+from dice.dice.tools.json_sync import JsonOrderedDict
+from dice.app import BasicApp
 
 
 class Desk(CoreApp):

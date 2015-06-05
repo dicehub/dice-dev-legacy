@@ -4,8 +4,8 @@ from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot
 
 # DICE modules
 # ============
-from core.dice.scheduler import Scheduler
-from core.app import BasicApp
+from dice.dice.scheduler import Scheduler
+from dice.app import BasicApp
 
 
 class Project(QObject):

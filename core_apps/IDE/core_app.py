@@ -10,10 +10,10 @@ from PyQt5.QtCore import pyqtProperty, pyqtSlot, pyqtSignal
 
 # DICE modules
 # ============
-from core.dice.core_app import CoreApp
-from core.app import BasicApp
-from core.app_helper.dict_helper import DictHelper
-from core.dice.tools.json_sync import JsonOrderedDict
+from dice.dice.core_app import CoreApp
+from dice.app import BasicApp
+from dice.app_helper.dict_helper import DictHelper
+from dice.dice.tools.json_sync import JsonOrderedDict
 
 
 class IDE(CoreApp, DictHelper):

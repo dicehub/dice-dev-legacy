@@ -3,11 +3,11 @@ from tempfile import gettempdir
 import shutil
 import os
 
-from core.app import BasicApp
-from core.main import Dice
+from dice.app import BasicApp
+from dice.main import Dice
 from core_apps.Desk.core_app import Desk
 from core_apps.Home.core_app import Home
-from core.dice.tools.json_sync import JsonOrderedDict
+from dice.dice.tools.json_sync import JsonOrderedDict
 
 
 class TestApp(unittest.TestCase):

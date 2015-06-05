@@ -10,8 +10,8 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot
 
 # DICE modules
 # ============
-from core.dice.vis import *
-from core.foam.boundary_types import *
+from dice.dice.vis import *
+from dice.foam.boundary_types import *
 
 
 class BoundingBox():

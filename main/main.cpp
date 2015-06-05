@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     QtWebEngine::initialize();
 
     PythonLoader pythonLoader{&app};
-    QObject* dice = pythonLoader.getObject("core.main", "Dice");
+    QObject* dice = pythonLoader.getObject("dice.main", "Dice");
     if (!dice) {
         qDebug() << "Could not initialize the python core!";
         return -1;

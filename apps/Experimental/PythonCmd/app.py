@@ -8,8 +8,8 @@ from multiprocessing import Queue
 
 # DICE modules
 # ============
-from core.app import BasicApp
-from core.dice.plotting.plot import Plotter
+from dice.app import BasicApp
+from dice.dice.plotting.plot import Plotter
 
 
 class PythonCmd(BasicApp):

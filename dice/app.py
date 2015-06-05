@@ -15,13 +15,13 @@ from PyQt5.QtQml import QJSValue
 
 # DICE modules
 # ============
-from core.dice.tools.json_sync import JsonList, JsonOrderedDict
-from core.tools.pyqt import convert_object_to_qjsvalue
-from core.app_helper.file_operations import FileOperations
-from core.app_helper.qml_helper import QMLHelper
-from core.app_helper.process_runner import ProcessRunner
-from core.app_helper.dict_helper import DictHelper
-from core.dice.vis.vis_app import VisApp
+from dice.dice.tools.json_sync import JsonList, JsonOrderedDict
+from dice.tools.pyqt import convert_object_to_qjsvalue
+from dice.app_helper.file_operations import FileOperations
+from dice.app_helper.qml_helper import QMLHelper
+from dice.app_helper.process_runner import ProcessRunner
+from dice.app_helper.dict_helper import DictHelper
+from dice.dice.vis.vis_app import VisApp
 
 
 class AppWorker(Thread):

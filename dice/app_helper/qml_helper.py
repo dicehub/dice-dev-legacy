@@ -3,7 +3,7 @@ from threading import Lock
 from PyQt5.QtCore import  qDebug, pyqtSignal, pyqtSlot, pyqtProperty, Qt
 from PyQt5.QtQuick import QQuickItem
 from PyQt5.QtQml import QQmlComponent, QJSValue
-from core.tools.pyqt import convert_object_to_qjsvalue
+from dice.tools.pyqt import convert_object_to_qjsvalue
 
 
 class QMLHelper:

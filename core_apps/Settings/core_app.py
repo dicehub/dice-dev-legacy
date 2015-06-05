@@ -8,8 +8,8 @@ from PyQt5.QtCore import pyqtProperty, pyqtSlot, pyqtSignal, qDebug
 
 # DICE modules
 # ============
-from core.dice.core_app import CoreApp
-from core.dice.tools.json_sync import JsonOrderedDict
+from dice.dice.core_app import CoreApp
+from dice.dice.tools.json_sync import JsonOrderedDict
 
 
 class Settings(CoreApp):

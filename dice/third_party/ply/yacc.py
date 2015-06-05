@@ -106,7 +106,7 @@ def load_ply_lex():
         import lex
     else:
         # Need this as it is not installed in a standard-location
-        import core.third_party.ply.lex as lex
+        import dice.third_party.ply.lex as lex
     return lex
 
 # This object is a stand-in for a logging object created by the

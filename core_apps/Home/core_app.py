@@ -1,8 +1,8 @@
 import os
 from PyQt5.QtCore import pyqtSignal, pyqtProperty, qDebug, pyqtSlot
 
-from core.dice.core_app import CoreApp
-from core.dice.tools.json_sync import JsonList
+from dice.dice.core_app import CoreApp
+from dice.dice.tools.json_sync import JsonList
 
 
 class Home(CoreApp):
