@@ -33,7 +33,7 @@ FocusScope {
         id: valueConnector
 
         optional: true
-//        enabled: toggleButton.enabled
+        enabled: toggleButton.enabled
     }
 
     MouseArea {

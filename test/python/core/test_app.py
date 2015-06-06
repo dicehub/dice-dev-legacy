@@ -7,7 +7,7 @@ from dice.app import BasicApp
 from dice.main import Dice
 from core_apps.Desk.core_app import Desk
 from core_apps.Home.core_app import Home
-from dice.dice.tools.json_sync import JsonOrderedDict
+from dice.dice_extras.tools.json_sync import JsonOrderedDict
 
 
 class TestApp(unittest.TestCase):

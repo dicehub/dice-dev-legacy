@@ -20,7 +20,7 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot, pyqtProperty
 # DICE modules
 # ============
 from dice.foam_app import FoamApp
-from dice.dice.vis import STLLoader, FoamMeshLoader, PointWrapper
+from dice.dice_extras.vis import STLLoader, FoamMeshLoader, PointWrapper
 from dice.foam.foam_mesh import FoamMesh
 
 # App modules

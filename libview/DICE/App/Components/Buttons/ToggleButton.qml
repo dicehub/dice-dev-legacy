@@ -13,6 +13,8 @@ DC.ToggleButton {
 
     property alias callParameter: __valueConnector.callParameter
 
+    property bool valueChanging: false // For syncing with other toggleButtons
+
     property PythonValueConnector valueConnector: PythonValueConnector {
         id: __valueConnector
 
@@ -21,12 +23,17 @@ DC.ToggleButton {
 
     property var valueConnectorValue: valueConnector.value
 
+    checked: valueConnectorValue
+
     onValueConnectorValueChanged: {
+        valueChanging = true
         if (checked !== valueConnectorValue)
             checked = valueConnectorValue
+        valueChanging = false
     }
 
     onCheckedChanged: {
-        valueConnector.setValue(root.checked)
+        if (!valueChanging)
+            valueConnector.setValue(root.checked)
     }
 }

@@ -297,6 +297,26 @@ class samplingExperiment(DakotaApp, Visualization):
     def get_rng_type_model(self):
         return self.sampling_nrg_types
 
+
+    '''
+    Options for descriptors
+    =======================
+    '''
+    # Lower Bounds
+    # ============
+
+    def get_lower_bounds(self):
+        self.debug("VAL "+str(self.dakota_keyword_exists("input.in variables lower_bounds")))
+        return self.dakota_keyword_exists("input.in variables lower_bounds")
+
+    def set_lower_bounds(self, value):
+        self.debug(str(value))
+        self.set_dakota_var("input.in variables lower_bounds", value)
+
+    def lower_bounds_signal_name(self):
+        return "input.in variables lower_bounds"
+
+
     '''
     Output for other Apps
     =====================

@@ -11,8 +11,8 @@ from PyFoam.Error import FatalErrorPyFoamException
 
 # DICE modules
 # ============
-from dice.dice.vis import STLLoader
-from dice.dice.tools import json_sync
+from dice.dice_extras.vis import STLLoader
+from dice.dice_extras.tools import json_sync
 from dice.foam_app import FoamApp
 
 # App modules

@@ -10,7 +10,7 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot
 
 # DICE modules
 # ============
-from dice.dice.vis import *
+from dice.dice_extras.vis import *
 from dice.foam.boundary_types import *
 
 

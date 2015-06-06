@@ -13,16 +13,16 @@ from PyQt5.QtQuick import QQuickItem, QQuickWindow
 # DICE modules
 # ============
 from dice.project import Project
-from dice.dice.tools.json_sync import JsonOrderedDict, JsonList
+from dice.dice_extras.tools.json_sync import JsonOrderedDict, JsonList
 
 from dice.theme import Theme
 from dice.tools.memory_info import MemoryInfo
 from dice.tools.error_handler import ErrorHandler
 
-from dice.dice.core_app import CoreApp, CoreAppListModel
+from dice.dice_extras.core_app import CoreApp, CoreAppListModel
 from dice.app import BasicApp
-from dice.dice.vis.basic_wrapper import BasicWrapper
-from dice.dice.vis.camera import Camera
+from dice.dice_extras.vis.basic_wrapper import BasicWrapper
+from dice.dice_extras.vis.camera import Camera
 
 
 class Dice(QObject):

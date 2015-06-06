@@ -4,7 +4,7 @@ from PyQt5.QtCore import QObject, pyqtProperty, pyqtSignal, pyqtSlot
 
 # DICE modules
 # ============
-from dice.dice.scheduler import Scheduler
+from dice.dice_extras.scheduler import Scheduler
 from dice.app import BasicApp
 
 

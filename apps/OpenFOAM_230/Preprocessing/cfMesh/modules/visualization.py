@@ -2,7 +2,7 @@
 Visualization
 =============
 """
-from dice.dice.vis import *
+from dice.dice_extras.vis import *
 
 
 class Visualization:

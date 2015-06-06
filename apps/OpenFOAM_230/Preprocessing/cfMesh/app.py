@@ -20,7 +20,7 @@ from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 # DICE modules
 # ============
 from dice.foam_app import FoamApp
-from dice.dice.vis import STLLoader, FoamMeshLoader
+from dice.dice_extras.vis import STLLoader, FoamMeshLoader
 from dice.foam.foam_mesh import FoamMesh
 
 # App modules

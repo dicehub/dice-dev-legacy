@@ -19,7 +19,7 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot, pyqtProperty
 # DICE modules
 # ============
 from dice.foam_app import FoamApp
-from dice.dice.vis import STLLoader
+from dice.dice_extras.vis import STLLoader
 
 
 class surfaceOrient(FoamApp):

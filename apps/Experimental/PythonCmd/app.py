@@ -9,7 +9,7 @@ from multiprocessing import Queue
 # DICE modules
 # ============
 from dice.app import BasicApp
-from dice.dice.plotting.plot import Plotter
+from dice.dice_extras.plotting.plot import Plotter
 
 
 class PythonCmd(BasicApp):

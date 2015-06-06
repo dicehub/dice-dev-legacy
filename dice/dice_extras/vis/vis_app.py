@@ -4,8 +4,8 @@ from PyQt5.QtCore import QObject, qDebug, pyqtSignal, pyqtSlot, pyqtProperty, QV
 
 # DICE modules
 # ============
-from dice.dice.vis.basic_wrapper import BasicWrapper
-from dice.dice.vis.camera import Camera
+from dice.dice_extras.vis.basic_wrapper import BasicWrapper
+from dice.dice_extras.vis.camera import Camera
 
 
 class VisApp:

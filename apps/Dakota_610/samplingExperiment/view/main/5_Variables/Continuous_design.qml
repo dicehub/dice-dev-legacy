@@ -40,18 +40,24 @@ Card {
         expanderVisible: false
         visibleShadowAndBorder: false
         Subheader { text: "Options"}
-        DakotaKeyword {
+
+        ToggleButton  {
             label: "Lower Bounds"
-            path: "input.in variables lower_bounds"
+            methodName: "lower_bounds"
         }
-        DakotaKeyword {
-            label: "Upper Bounds"
-            path: "input.in variables upper_bounds"
-        }
-        DakotaKeyword {
-            label: "Initial Point"
-            path: "input.in variables initial_point "
-        }
+
+//        DakotaKeyword {
+//            label: "Lower Bounds"
+//            path: "input.in variables lower_bounds"
+//        }
+//        DakotaKeyword {
+//            label: "Upper Bounds"
+//            path: "input.in variables upper_bounds"
+//        }
+//        DakotaKeyword {
+//            label: "Initial Points"
+//            path: "input.in variables initial_point"
+//        }
     }
 }
 
