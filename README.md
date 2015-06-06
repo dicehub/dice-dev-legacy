@@ -4,7 +4,7 @@
 
 [![License](http://img.shields.io/:license-gpl3-blue.svg)](http://img.shields.io/:license-gpl3-blue.svg)
 [![GitHub issues](https://img.shields.io/github/issues/diceproject/dice-dev.svg)](https://github.com/diceproject/dice-dev/issues)
-[![GitHub release](https://img.shields.io/github/release/diceproject/dice-dev.svg)](https://github.com/diceproject/dice-dev/releases)
+[![GitHub release](https://img.shields.io/github/release/diceproject/dice-dev.svg)](https://github.com/diceproject/dice-dev)
 
 **DICE** is an experimental open source project for a simplified creation of  user interfaces and utilities in the area of numerical simulations.
 
