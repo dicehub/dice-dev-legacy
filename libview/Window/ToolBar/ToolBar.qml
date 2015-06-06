@@ -30,7 +30,12 @@ Rectangle {
 
         Tab {
             title: "Home"
-            sourceComponent: !root.minimized ? mainWindow.home.toolBar : undefined
+            sourceComponent: {
+                if (!!mainWindow.home)
+                    !root.minimized ? mainWindow.home.toolBar : undefined
+                else
+                    undefined
+            }
         }
 
         Tab {

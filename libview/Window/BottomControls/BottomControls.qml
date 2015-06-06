@@ -34,7 +34,11 @@ Rectangle {
     Row {
         id: row
 
-        property var currentApp: mainWindow.getCoreApp("Desk").deskData.currentApp
+        property var currentApp: !!mainWindow.getCoreApp("Desk") ? mainWindow.getCoreApp("Desk").deskData.currentApp : null
+        property string currentAppName: !!currentApp ? currentApp.name : ""
+        property string currentAppStatus: !!currentApp ? currentApp.status : ""
+        property color currentAppStatusColor: !!currentApp ? colors.appStatusColors[parent.currentAppStatus] : "#000"
+
 
         spacing: 10
         anchors.right: parent.right
@@ -45,7 +49,7 @@ Rectangle {
 
         MenuText {
             opacity: !!parent.currentApp ? 1 : 0
-            text: parent.currentApp.name
+            text: parent.currentAppName
             height: parent.height
             verticalAlignment: "AlignVCenter"
             font.family: fonts.codeTextFont
@@ -60,8 +64,8 @@ Rectangle {
 
         MenuText {
             opacity: !!parent.currentApp ? 1 : 0
-            text: parent.currentApp.status
-            color: colors.appStatusColors[parent.currentApp.status]
+            text: parent.currentAppStatus
+            color: parent.currentAppStatusColor
             height: parent.height
             verticalAlignment: "AlignVCenter"
             font.family: fonts.codeTextFont

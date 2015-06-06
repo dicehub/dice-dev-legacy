@@ -5,13 +5,13 @@ Menu {
     title: "DICE"
 
     MenuItem {
-        action: mainWindow.getCoreApp("Home").actions.createNewProjectAction
+        action: !!mainWindow.getCoreApp("Home") ? mainWindow.getCoreApp("Home").actions.createNewProjectAction : null
     }
     MenuItem {
-        action: mainWindow.getCoreApp("Home").actions.loadProjectAction
+        action: !!mainWindow.getCoreApp("Home") ? mainWindow.getCoreApp("Home").actions.loadProjectAction : null
     }
     MenuItem {
-        action: mainWindow.getCoreApp("Home").actions.openDiceSettingsAction
+        action: !!mainWindow.getCoreApp("Home") ? mainWindow.getCoreApp("Home").actions.openDiceSettingsAction : null
     }
 
     MenuSeparator {}

@@ -56,7 +56,7 @@ Item {
         id: closeTab
         text: "Close Tab"
         shortcut: "Ctrl+W"
-        enabled: !!mainWindow.getCoreApp("Desk").deskData.currentApp
+        enabled: !!mainWindow.getCoreApp("Desk") ? !!mainWindow.getCoreApp("Desk").deskData.currentApp : false
         onTriggered: {
             var openTabsNumber = tabsBar.openedStreamItems.count
             var currentTabIndex = tabsBar.openedStreamItems.activeStreamItem

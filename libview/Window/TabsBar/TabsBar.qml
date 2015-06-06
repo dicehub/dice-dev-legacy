@@ -40,7 +40,7 @@ Rectangle {
             displaced: Transition {
                 NumberAnimation { properties: "x,y"; easing.type: Easing.OutQuad }
             }
-            currentIndex: openedStreamItems.activeStreamItem
+            currentIndex: !!openedStreamItems ? openedStreamItems.activeStreamItem : 0
             model: DelegateModel {
                 id: visualModel
 

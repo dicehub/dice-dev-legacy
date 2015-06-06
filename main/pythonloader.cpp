@@ -37,8 +37,8 @@ PythonLoader::PythonLoader(QObject *parent) : QObject(parent)
         programName[programPath.length()] = 0;
 
         Py_SetProgramName(programName);
-        wprintf(L"prefix: %S\n", Py_GetPrefix());
-        wprintf(L"program full path: %S\n", Py_GetProgramFullPath());
+        wprintf(L"python prefix path: %S\n", Py_GetPrefix());
+        wprintf(L"python full path: %S\n", Py_GetProgramFullPath());
         Py_Initialize();
         QStringList paths = {sysPath+"/thirdparty/Python/lib/python3.4", sysPath+"/thirdparty/Python/lib/python3.4/plat-linux",
                              sysPath+"/thirdparty/Python/lib/python3.4/lib-dynload", sysPath+"/thirdparty/Python/lib/python3.4/site-packages",
