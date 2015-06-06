@@ -61,7 +61,7 @@ PythonValueConnector {
     }
 
     onPathChanged: {
-        load()
+//        load()
         if (optional)
             __loadOptionalEnabled()
     }

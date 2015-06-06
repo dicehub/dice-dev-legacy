@@ -17,7 +17,6 @@ Body {
         enabled: variablesDesign.currentRealText !== 'none'
         visible: enabled
 
-//        Subheader { text:  variablesDesign.currentRealText + " - Variables"}
         Continuous_design {}
     }
 }

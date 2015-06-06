@@ -122,8 +122,8 @@ class DakotaApp(BasicApp):
         else:
             return False
 
-    def set_invalid_or_remove_var(self, path, set_keyword):
-        if set_keyword:
+    def set_invalid_or_remove_var(self, path, set_invalid):
+        if set_invalid:
             self.set_dakota_var(path, "")
         else:
             self.remove_from_dict(path)

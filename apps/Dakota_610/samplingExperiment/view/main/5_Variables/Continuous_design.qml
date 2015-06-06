@@ -15,9 +15,9 @@ Card {
         width: parent.width
         modelData: app.treeViewModel
 
-        onCurrentNodeChanged: {
-            print("INDEX "+currentNode.model.index)
-        }
+//        onCurrentNodeChanged: {
+//            print("INDEX "+currentNode.model.index)
+//        }
     }
 
     DakotaValue {
@@ -25,15 +25,33 @@ Card {
         visible: enabled
         label: "Lower Bound"
         path: "input.in variables lower_bounds " + treeView.currentNode.model.index
-        onPathChanged: {
-            print("PATH "+path)
-        }
+//        onPathChanged: {
+//            print("PATH "+path)
+//        }
     }
     DakotaValue {
         enabled: !!treeView.currentNode
         visible: enabled
         label: "Upper Bound"
         path: "input.in variables upper_bounds " + treeView.currentNode.model.index
+    }
+
+    Card {
+        expanderVisible: false
+        visibleShadowAndBorder: false
+        Subheader { text: "Options"}
+        DakotaKeyword {
+            label: "Lower Bounds"
+            path: "input.in variables lower_bounds"
+        }
+        DakotaKeyword {
+            label: "Upper Bounds"
+            path: "input.in variables upper_bounds"
+        }
+        DakotaKeyword {
+            label: "Initial Point"
+            path: "input.in variables initial_point "
+        }
     }
 }
 
