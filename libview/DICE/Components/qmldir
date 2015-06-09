@@ -9,6 +9,7 @@ MenuButton 1.0 Buttons/MenuButton.qml
 IconCheckBox 1.0 Buttons/IconCheckBox.qml
 RaisedButton 1.0 Buttons/RaisedButton.qml
 ToggleButton 1.0 Buttons/ToggleButton.qml
+CheckBoxButton 1.0 Buttons/CheckBoxButton.qml
 
 # Layout
 # ======

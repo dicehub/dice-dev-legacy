@@ -43,7 +43,11 @@ Rectangle {
     }
 
     function changePlotSize(width, height) {
-        return "Bokeh.Collections('Plot').at(0).set('plot_width'," + width*0.95 + ");"
-        + "Bokeh.Collections('Plot').at(0).set('plot_height'," + height*0.9 + ");"
+        var jsCode = "length = Bokeh.Collections('Plot').length;
+        for (i=0; i<length; i++) {
+          Bokeh.Collections('Plot').at(i).set('plot_width'," + width*0.95 + ");"
+          + "Bokeh.Collections('Plot').at(i).set('plot_height'," + height*0.9 + ");
+        }"
+        return jsCode
     }
 }

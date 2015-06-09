@@ -98,9 +98,9 @@ class samplingExperiment(DakotaApp, Visualization):
         # =================================================================
         if self.status == DakotaApp.FINISHED:
             self.__output_csv = DakotaTableCsv(self.current_run_path())
-            x1 = self.__output_csv.x1_data()
-            y1 = self.__output_csv.y1_data()
-            self.load_data(x1, y1)
+            # x1 = self.__output_csv.x1_data()
+            # y1 = self.__output_csv.y1_data()
+            self.load_data(self.__output_csv)
 
         self.update_tree_view()
 
@@ -117,9 +117,7 @@ class samplingExperiment(DakotaApp, Visualization):
     def run(self):
         if self.dakota_exec(["-i", "input.in"]) == 0:
             self.__output_csv = DakotaTableCsv(self.current_run_path())
-            x1 = self.__output_csv.x1_data()
-            y1 = self.__output_csv.y1_data()
-            self.load_data(x1, y1)
+            self.load_data(self.__output_csv)
             return True
 
     def __make_executable_by_owner(self, files):
@@ -149,13 +147,11 @@ class samplingExperiment(DakotaApp, Visualization):
 
     def __create_tree_view_model(self):
         descriptors_list = self.get_dakota_var("input.in variables descriptors")
-        self.debug("d-list "+str(descriptors_list))
         variables_model = [{
             "text": name,
             "index": i
         } for i, name in enumerate(descriptors_list)]
-        descriptors_count = self.get_dakota_var("input.in variables continuous_design")
-        self.debug("descriptors count "+str(descriptors_count))
+        # descriptors_count = self.get_dakota_var("input.in variables continuous_design")
         model = variables_model
         return model
 
@@ -226,76 +222,76 @@ class samplingExperiment(DakotaApp, Visualization):
     def experiment_method_signal_name(self, path):
         return self.input_file_name  + " method"
 
-    # '''
-    # DACE - Sample Type
-    # ==================
-    # '''
-    # def get_dace_sample_type_model(self):
-    #     return self.dace_sample_types
-
-    # def get_dace_sample_type(self):
-    #     dak_var = self.dakota_input_file['method']
-    #     for sample_type in self.dace_sample_types:
-    #         if sample_type in dak_var:
-    #             return sample_type
-    #     return 'none'
+    # # '''
+    # # DACE - Sample Type
+    # # ==================
+    # # '''
+    # # def get_dace_sample_type_model(self):
+    # #     return self.dace_sample_types
     #
-    # def set_dace_sample_type(self, value):
-    #     try:
-    #         # remove old dace sample type
-    #         # ===========================
-    #         dak_var = self.dakota_input_file['method']
-    #         for sample_type in self.dace_sample_types:
-    #             if sample_type in dak_var:
-    #                 del dak_var[sample_type]
+    # # def get_dace_sample_type(self):
+    # #     dak_var = self.dakota_input_file['method']
+    # #     for sample_type in self.dace_sample_types:
+    # #         if sample_type in dak_var:
+    # #             return sample_type
+    # #     return 'none'
+    # #
+    # # def set_dace_sample_type(self, value):
+    # #     try:
+    # #         # remove old dace sample type
+    # #         # ===========================
+    # #         dak_var = self.dakota_input_file['method']
+    # #         for sample_type in self.dace_sample_types:
+    # #             if sample_type in dak_var:
+    # #                 del dak_var[sample_type]
+    # #
+    # #         # add new dace sample type
+    # #         # ========================
+    # #         dak_var[value] = ''
+    # #         self.dakota_input_file.writeFile()
+    # #     except:
+    # #         raise KeyError('Could not set sample type')
+    # #
+    # # def dace_sample_type_signal_name(self):
+    # #     return self.input_file_name
     #
-    #         # add new dace sample type
-    #         # ========================
-    #         dak_var[value] = ''
-    #         self.dakota_input_file.writeFile()
-    #     except:
-    #         raise KeyError('Could not set sample type')
+    # # '''
+    # # Sampling - Sample Type
+    # # ======================
+    # # '''
+    # # def get_sampling_sample_type_model(self):
+    # #     return self.sampling_sample_types
     #
-    # def dace_sample_type_signal_name(self):
-    #     return self.input_file_name
-
-    # '''
-    # Sampling - Sample Type
-    # ======================
-    # '''
-    # def get_sampling_sample_type_model(self):
-    #     return self.sampling_sample_types
-
-    # def get_sampling_sample_type(self):
-    #     dak_var = self.dakota_input_file['method']
-    #     for sample_type in self.sampling_sample_types:
-    #         if sample_type in dak_var:
-    #             return sample_type
-    #     return 'none'
+    # # def get_sampling_sample_type(self):
+    # #     dak_var = self.dakota_input_file['method']
+    # #     for sample_type in self.sampling_sample_types:
+    # #         if sample_type in dak_var:
+    # #             return sample_type
+    # #     return 'none'
+    # #
+    # # def set_sampling_sample_type(self, value):
+    # #     try:
+    # #         # remove old sampling sample type
+    # #         # ===============================
+    # #         dak_var = self.dakota_input_file['method']
+    # #         for sample_type in self.sampling_sample_types:
+    # #             if sample_type in dak_var:
+    # #                 del dak_var[sample_type]
+    # #
+    # #         # add new sampling sample type
+    # #         # ============================
+    # #         dak_var[value] = ''
+    # #         self.dakota_input_file.writeFile()
+    # #     except:
+    # #         raise KeyError('Could not set sample type')
+    # #
+    # # def sampling_sample_type_signal_name(self):
+    # #     return self.input_file_name
     #
-    # def set_sampling_sample_type(self, value):
-    #     try:
-    #         # remove old sampling sample type
-    #         # ===============================
-    #         dak_var = self.dakota_input_file['method']
-    #         for sample_type in self.sampling_sample_types:
-    #             if sample_type in dak_var:
-    #                 del dak_var[sample_type]
-    #
-    #         # add new sampling sample type
-    #         # ============================
-    #         dak_var[value] = ''
-    #         self.dakota_input_file.writeFile()
-    #     except:
-    #         raise KeyError('Could not set sample type')
-    #
-    # def sampling_sample_type_signal_name(self):
-    #     return self.input_file_name
-
-    # Sampling - NRG - Type
-    # =====================
-    def get_rng_type_model(self):
-        return self.sampling_nrg_types
+    # # Sampling - NRG - Type
+    # # =====================
+    # def get_rng_type_model(self):
+    #     return self.sampling_nrg_types
 
 
     '''
@@ -304,17 +300,20 @@ class samplingExperiment(DakotaApp, Visualization):
     '''
     # Lower Bounds
     # ============
+    def get_lower_bounds(self, path_and_default_value):
+        path = path_and_default_value[0]
+        return self.dakota_keyword_exists(path)
 
-    def get_lower_bounds(self):
-        self.debug("VAL "+str(self.dakota_keyword_exists("input.in variables lower_bounds")))
-        return self.dakota_keyword_exists("input.in variables lower_bounds")
+    def set_lower_bounds(self, path_and_default_value, checked):
+        path = path_and_default_value[0]
+        default_value = path_and_default_value[1]
+        if not checked:
+            self.remove_from_dict(path)
+        else:
+            self.set_dakota_var(path, default_value)
 
-    def set_lower_bounds(self, value):
-        self.debug(str(value))
-        self.set_dakota_var("input.in variables lower_bounds", value)
-
-    def lower_bounds_signal_name(self):
-        return "input.in variables lower_bounds"
+    def lower_bounds_signal_name(self, path=None):
+        return "input.in"
 
 
     '''

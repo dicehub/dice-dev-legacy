@@ -2,6 +2,8 @@
 # =======================
 import os
 import csv
+from PyQt5.QtCore import qDebug
+from collections import OrderedDict
 
 
 class DakotaTableCsv:
@@ -26,20 +28,20 @@ class DakotaTableCsv:
                 line = line.replace("EMPTY", "")
                 o.writerow(line.split())
 
-    def x1_data(self):
-        path = self.csv_file_full_path
-        x1_data_field = []
-        x1_data_field_floats = []
-        if os.path.exists(path):
-            with open(path, 'r') as csv_file:
-                csv_data = csv.reader(csv_file)
-                for row in csv_data:
-                    x1_data_field.append(row[1])
-            for i in x1_data_field[1:]:
-                x1_data_field_floats.append(float(i))
-        return x1_data_field_floats
+    # def x_data(self):
+    #     path = self.csv_file_full_path
+    #     x1_data_field = []
+    #     x1_data_field_floats = []
+    #     if os.path.exists(path):
+    #         with open(path, 'r') as csv_file:
+    #             csv_data = csv.reader(csv_file)
+    #             for row in csv_data:
+    #                 x1_data_field.append(row[0])
+    #         for i in x1_data_field[1:]:
+    #             x1_data_field_floats.append(float(i))
+    #     return x1_data_field_floats
 
-    def y1_data(self):
+    def data_column(self, column_number):
         path = self.csv_file_full_path
         y1_data_field = []
         y1_data_field_floats = []
@@ -47,7 +49,25 @@ class DakotaTableCsv:
             with open(path, 'r') as csv_file:
                 csv_data = csv.reader(csv_file)
                 for row in csv_data:
-                    y1_data_field.append(row[2])
+                    y1_data_field.append(row[column_number])
+            var_name = y1_data_field[0]
             for i in y1_data_field[1:]:
                 y1_data_field_floats.append(float(i))
-        return y1_data_field_floats
+            return var_name, y1_data_field_floats
+
+    def data(self):
+        columns = OrderedDict()
+        for i in range(self.vars_count()):
+            var_name, column = self.data_column(i)
+            columns[var_name] = column
+        return columns
+
+
+
+    def vars_count(self):
+        path = self.csv_file_full_path
+        if os.path.exists(path):
+            with open(path, 'r') as csv_file:
+                csv_data = csv.reader(csv_file)
+                first_line = next(csv_data)
+                return  len(first_line)

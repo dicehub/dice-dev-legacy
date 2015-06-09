@@ -264,7 +264,7 @@ void vtkQFBORenderer::setVisObjects(QVariantList objects)
             update();
         }
     }
-//    renderer->ResetCamera();
+    renderer->ResetCamera();
 }
 
 void vtkQFBORenderer::displayOrientationAxes()

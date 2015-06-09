@@ -6,5 +6,6 @@ DakotaKeywordCheck 1.0 DakotaKeywordCheck.qml
 DakotaValue 1.0 DakotaValue.qml
 DakotaKeyword 1.0 DakotaKeyword.qml
 
-
 DakotaKeywordDropDown 1.0 DakotaKeywordDropDown.qml
+
+DakotaOptionButton 1.0 DakotaOptionButton.qml

@@ -30,8 +30,8 @@ Rectangle {
     property var fonts: appWindow.fonts
     property var colors: appWindow.colors
     property var variables: appWindow.variables
-    property string helpUrl: appWindow.helpUrl
-    property string helpUrlFragment: appWindow.helpUrlFragment
+    property string helpUrl: !!appWindow.helpUrl ? appWindow.helpUrl : ""
+    property string helpUrlFragment: !!appWindow.helpUrlFragment ? appWindow.helpUrlFragment : ""
 
     // TODO: rename *Object to *Item
     property var naviObject

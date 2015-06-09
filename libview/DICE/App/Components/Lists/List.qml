@@ -32,6 +32,7 @@ ScrollView_DICE {
             ListView {
                 id: listView
 
+                interactive: false
                 model: root.model
                 width: root.width - 10
                 height: childrenRect.height

@@ -7,16 +7,16 @@ Visualization
 # ================
 from bokeh.plotting import *
 from PyQt5.QtCore import pyqtProperty, pyqtSlot, pyqtSignal
-from bokeh.models.renderers import GlyphRenderer
-from bokeh.embed import autoload_static
-from bokeh.resources import Resources
+# from bokeh.models.renderers import GlyphRenderer
+# from bokeh.embed import autoload_static
+# from bokeh.resources import Resources
 
 
 class Visualization:
 
     def __init__(self):
 
-        self.p1 = None
+        self.p = []
         self.__plot_html_path = ""
         self.page_name = 'index.html'
         self.__reload_web_engine = False
@@ -32,13 +32,13 @@ class Visualization:
         self.__plot_html_path = self.config_path(self.page_name)
         output_file(self.__plot_html_path, mode="absolute")
 
-        self.p1 = figure(plot_width=self.default_plot_width,
+        self.p.append(figure(plot_width=self.default_plot_width,
                          plot_height=self.default_plot_height,
-                         tools="pan,wheel_zoom,box_zoom,reset,resize,previewsave")
-        self.p1.scatter(self.x1, self.y1, size=12, color="red", alpha=0.5)
-        self.p1.toolbar_location = None
-        save(self.p1)
+                         tools="pan,wheel_zoom,box_zoom,reset,resize,previewsave"))
+        self.p[0].scatter(self.x1, self.y1, size=12, color="red", alpha=0.5)
+        # self.p[0].toolbar_location = None
 
+        save(HBox(self.p[0]))
 
     # HTML Path
     # =========
@@ -74,8 +74,7 @@ class Visualization:
         self.reload_web_engine = False
         import time
         time.sleep(0.1)
-        save(self.p1)
-        # self.plot_html_path = self.config_path(self.page_name)
+        save(vplot(self.p[0], self.p[1], self.p[2]))
         self.reload_web_engine = True
 
     reload_web_engine_changed = pyqtSignal(name="reloadWebEngineChanged")
@@ -94,15 +93,26 @@ class Visualization:
 
     # Load data and reload plot
     # =========================
-    def load_data(self, x1, y1):
-        my_renderer = self.p1.select(dict(type=GlyphRenderer))
-        data_src = my_renderer[0].data_source
+    def load_data(self, csv_data):
 
-        self.x1 = x1
-        self.y1 = y1
-
-        data_src.data["x"] = x1
-        data_src.data["y"] = y1
-        data_src._dirty = True
+        self.p = []
+        data = csv_data.data()
+        for var_name in data:
+            if var_name != "%eval_id":
+                self.p.append(self.create_scatter_figure(data["%eval_id"],
+                                                         data[var_name],
+                                                         "i",
+                                                         var_name))
 
         self.reload_plot()
+
+    def create_scatter_figure(self, x, y, x_name, y_name):
+        fig = figure(plot_width=self.default_plot_width,
+                         plot_height=self.default_plot_height,
+                         tools="pan,wheel_zoom,box_zoom,reset,resize,previewsave",
+            x_axis_label=x_name,
+            y_axis_label=y_name)
+        fig.scatter(x, y, size=12, color="red", alpha=0.5)
+        fig.toolbar_location = None
+
+        return fig

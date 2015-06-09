@@ -9,12 +9,6 @@ Body {
             checkedText: "Yes"
             path: "system/snappyHexMeshDict castellatedMesh"
         }
-        FoamToggleButton {
-            label: "Activate CastellatedMesh Generation"
-            uncheckedText: "No"
-            checkedText: "Yes"
-            path: "system/snappyHexMeshDict castellatedMesh"
-        }
         Subheader { text: "Settings for the castellatedMesh generation" }
         FoamValue {
             label: "Resolve Feature Angle [°]"

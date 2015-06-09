@@ -15,6 +15,9 @@ Body {
         TreeView {
             id: treeView
 
+            property string currentNodeText: !!currentNode ? currentNode.model.text : ""
+            property string currentNodeType: !!currentNode ? currentNode.model.type : ""
+
             maxHeight: 300
             width: parent.width
             modelData: app.treeViewModel

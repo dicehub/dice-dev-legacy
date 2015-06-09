@@ -23,7 +23,7 @@ QtObject {
 
     property bool enabled
 
-    property var value
+    property var value: ""
     property var __oldValue: null  // stored the old value to prevent setting a value twice
     property bool __settingReceivedValue: false  // true while setting a received value to prevent calling the python set method
 
@@ -124,10 +124,10 @@ QtObject {
 
         // call setMethod only if the value is not what we just received from getMethod
         if (validSetMethod && newValue !== __oldValue) {
-            print("SET "+newValue)
+//            print("SET "+newValue)
             app.call(setMethod, extraPar([newValue]), function(){
                 if (newValue !== __oldValue) {
-                    print("RET "+newValue)
+//                    print("RET "+newValue)
                     root.value = ""+newValue
                     __oldValue = ""+newValue
                 }

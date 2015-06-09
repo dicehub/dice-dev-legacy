@@ -93,7 +93,8 @@ Column {
             anchors.margins: {top: 5; left: 5}
             model: ListModel {}
             onCurrentNodePathChanged: {
-                app.selectedVisObjectPath = currentNodePath
+                if (!!currentNodePath)
+                    app.selectedVisObjectPath = currentNodePath
             }
 
             property var objectsTree: app.visObjectsTree

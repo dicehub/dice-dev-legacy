@@ -37,18 +37,17 @@ Rectangle {
         property var currentApp: !!mainWindow.getCoreApp("Desk") ? mainWindow.getCoreApp("Desk").deskData.currentApp : null
         property string currentAppName: !!currentApp ? currentApp.name : ""
         property string currentAppStatus: !!currentApp ? currentApp.status : ""
-        property color currentAppStatusColor: !!currentApp ? colors.appStatusColors[parent.currentAppStatus] : "#000"
+        property color currentAppStatusColor: !!currentApp ? colors.appStatusColors[currentAppStatus] : "#000"
 
 
         spacing: 10
         anchors.right: parent.right
         anchors.rightMargin: 5
         anchors.verticalCenter: parent.verticalCenter
-        width: childrenRect.width
         height: parent.height
 
         MenuText {
-            opacity: !!parent.currentApp ? 1 : 0
+            visible: !!parent.currentApp
             text: parent.currentAppName
             height: parent.height
             verticalAlignment: "AlignVCenter"
@@ -56,14 +55,14 @@ Rectangle {
         }
 
         Rectangle {
-            opacity: !!parent.currentApp ? 1 : 0
+            visible: !!parent.currentApp
             width: 1
             height: parent.height
             color: colors.borderColor
         }
 
         MenuText {
-            opacity: !!parent.currentApp ? 1 : 0
+            visible: !!parent.currentApp
             text: parent.currentAppStatus
             color: parent.currentAppStatusColor
             height: parent.height

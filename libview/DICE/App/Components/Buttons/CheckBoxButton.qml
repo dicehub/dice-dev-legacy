@@ -3,7 +3,7 @@ import QtQuick 2.4
 import DICE.App 1.0
 import DICE.Components 1.0 as DC
 
-DC.ToggleButton {
+DC.CheckBoxButton {
     id: root
 
     property alias methodName: __valueConnector.methodName
@@ -13,7 +13,7 @@ DC.ToggleButton {
 
     property alias callParameter: __valueConnector.callParameter
 
-    property bool valueChanging: false // For syncing with other toggleButtons
+    property bool valueChanging: false // For syncing with other checkBoxButtons
 
     property PythonValueConnector valueConnector: PythonValueConnector {
         id: __valueConnector
@@ -27,7 +27,7 @@ DC.ToggleButton {
 
     onValueConnectorValueChanged: {
         valueChanging = true
-        if (checked !== valueConnectorValue && !!valueConnectorValue)
+        if (checked !== valueConnectorValue)
             checked = valueConnectorValue
         valueChanging = false
     }

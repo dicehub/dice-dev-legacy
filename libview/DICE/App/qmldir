@@ -45,6 +45,7 @@ RaisedButton 1.0 Components/Buttons/RaisedButton.qml
 ToggleButton 1.0 Components/Buttons/ToggleButton.qml
 FloatingButton 1.0 Components/Buttons/FloatingButton.qml
 IconCheckBox 1.0 Components/Buttons/IconCheckBox.qml
+CheckBoxButton 1.0 Components/Buttons/CheckBoxButton.qml
 
 # Input
 # =====

@@ -138,7 +138,9 @@ class DakotaApp(BasicApp):
             for key in var_dict:
                 if key == var_path[-1]:
                     del var_dict[var_path[-1]]
+
                     var.writeFile()
+                    self.signal(file_name, var_path)
         else:
             return
 
