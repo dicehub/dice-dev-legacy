@@ -3,9 +3,8 @@ Most of this class was shamelessly stolen from the examples"""
 
 import os
 
-import dice.third_party.ply.lex as lex
-import dice.third_party.ply.yacc as yacc
-
+import ply.lex as lex
+import ply.yacc as yacc
 
 class PlyParser(object):
     """
@@ -13,7 +12,6 @@ class PlyParser(object):
     """
     tokens = ()
     precedence = ()
-
 
     def __init__(self, **kw):
         """Constructs the parser and the lexer"""
