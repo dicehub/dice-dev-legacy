@@ -9,35 +9,20 @@ Card {
     expanderVisible: false
 
     Subheader { text: "Descriptors" }
+
     TreeView {
         id: treeView
         maxHeight: 300
         width: parent.width
         modelData: app.treeViewModel
-
-//        onCurrentNodeChanged: {
-//            print("INDEX "+currentNode.model.index)
-//        }
     }
-
-//    List {
-//        maxHeight: 300
-//        width: parent.width
-//        modelData: app.treeViewModel
-//        delegate: ListItem {
-//            height: 20
-//            text: model.text
-//        }
-//    }
 
     DakotaValue {
         enabled: !!treeView.currentNode && lowerBoundsOption.checked
+        onEnabledChanged: print("CHANGED!!!")
         visible: enabled
         label: "Lower Bound"
         path: "input.in variables lower_bounds " + treeView.currentNode.model.index
-//        onPathChanged: {
-//            print("PATH "+path)
-//        }
     }
     DakotaValue {
         enabled: !!treeView.currentNode && upperBoundsOption.checked
@@ -58,35 +43,10 @@ Card {
 
         Subheader { text: "Options"}
 
-//        ToggleButton  {
-//            label: "Lower Bounds"
-//            methodName: "lower_bounds"
-//        }
-
-//        DakotaKeyword {
-//            label: "Lower Bounds"
-//            path: "input.in variables lower_bounds"
-//        }
-//        DakotaKeyword {
-//            label: "Upper Bounds"
-//            path: "input.in variables upper_bounds"
-//        }
-//        DakotaKeyword {
-//            label: "Initial Points"
-//            path: "input.in variables initial_point"
-//        }
-
-//        DakotaOptionButton {
-//            text: "Lower Bounds"
-//            path: "input.in variables lower_bounds"
-////            methodName: "lower_bounds"
-//            defaultValue: Array.apply(null, new Array(treeView.modelData.length)).map(Number.prototype.valueOf, 0);
-//        }
         DakotaOptionButton {
             id: lowerBoundsOption
             text: "Lower Bounds"
             path: "input.in variables lower_bounds"
-//            methodName: "lower_bounds"
             defaultValue: Array.apply(null, new Array(treeView.modelData.length)).map(Number.prototype.valueOf, 0);
         }
         DakotaOptionButton {

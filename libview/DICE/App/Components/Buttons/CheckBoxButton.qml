@@ -27,8 +27,8 @@ DC.CheckBoxButton {
 
     onValueConnectorValueChanged: {
         valueChanging = true
-        if (checked !== valueConnectorValue)
-            checked = valueConnectorValue
+//        if (checked !== valueConnectorValue)
+//            checked = valueConnectorValue
         valueChanging = false
     }
 
