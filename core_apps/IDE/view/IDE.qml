@@ -44,6 +44,7 @@ CoreApp {
         webEngineView.runJavaScript(createJSfunctionForSavingFile(), function(data) {
             coreApp.saveDataByUrl(currentEditedApp, appWindow.helpPath, data)
         })
+        print(currentEditedApp)
         currentEditedApp.call("load")
     }
 

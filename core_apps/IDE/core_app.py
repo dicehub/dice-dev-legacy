@@ -139,6 +139,7 @@ class IDE(CoreApp, DictHelper):
         if os.path.exists(app_local_path):
             with open(app_local_path, "w") as file:
                 file.write(data)
+                self.debug(app_local_path)
 
     # Select Theme
     # ============

@@ -1,3 +1,5 @@
+import QtQuick 2.3
+
 import DICE.App 1.0
 import DICE.App.Dakota 1.0
 import DICE.App.Foam 1.0
@@ -19,7 +21,6 @@ Card {
 
     DakotaValue {
         enabled: !!treeView.currentNode && lowerBoundsOption.checked
-        onEnabledChanged: print("CHANGED!!!")
         visible: enabled
         label: "Lower Bound"
         path: "input.in variables lower_bounds " + treeView.currentNode.model.index
@@ -37,9 +38,25 @@ Card {
         path: "input.in variables initial_point " + treeView.currentNode.model.index
     }
 
+    Row {
+        enabled: !!treeView.currentNode
+        visible: enabled
+        width: parent.width
+        spacing: 10
+
+        FlatButton {
+            text: "Add"
+            width: (parent.width - parent.spacing)*0.5
+        }
+        FlatButton {
+            text: "Delete"
+            width: (parent.width - parent.spacing)*0.5
+        }
+    }
+
     Card {
-        expanderVisible: false
         visibleShadowAndBorder: false
+        expanded: false
 
         Subheader { text: "Options"}
 

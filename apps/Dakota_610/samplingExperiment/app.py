@@ -55,6 +55,10 @@ class samplingExperiment(DakotaApp, Visualization):
         # ==================
         self.experiment_methods = self.get_model_data("method_types")
 
+        # Input file name
+        # ===============
+        self.input_file_name = "input.in"
+
         # Parsed files
         # ============
         self.dakota_input_file = None
@@ -69,10 +73,6 @@ class samplingExperiment(DakotaApp, Visualization):
 
     def load(self):
         self.copy_template_folder()
-
-        # Input file name
-        # ===============
-        self.input_file_name = "input.in"
 
         # Parse input files
         # =================
@@ -90,8 +90,6 @@ class samplingExperiment(DakotaApp, Visualization):
         # =================================================================
         if self.status == DakotaApp.FINISHED:
             self.__output_csv = DakotaTableCsv(self.current_run_path())
-            # x1 = self.__output_csv.x1_data()
-            # y1 = self.__output_csv.y1_data()
             self.load_data(self.__output_csv)
 
         self.update_tree_view()
@@ -205,36 +203,12 @@ class samplingExperiment(DakotaApp, Visualization):
                 ("samples", 42),
                 ("seed", 42)
             ])
-        elif value == "none":
-            self.dakota_input_file['method'] = OrderedDict()
         else:
             raise KeyError("Not found key "+value)
         self.dakota_input_file.writeFile()
 
     def experiment_method_signal_name(self, path):
         return self.input_file_name  + " method"
-
-    '''
-    Options for descriptors
-    =======================
-    '''
-    # Lower Bounds
-    # ============
-    def get_lower_bounds(self, path_and_default_value):
-        path = path_and_default_value[0]
-        return self.dakota_keyword_exists(path)
-
-    def set_lower_bounds(self, path_and_default_value, checked):
-        path = path_and_default_value[0]
-        default_value = path_and_default_value[1]
-        if not checked:
-            self.remove_from_dict(path)
-        else:
-            self.set_dakota_var(path, default_value)
-
-    def lower_bounds_signal_name(self, path=None):
-        return "input.in"
-
 
     '''
     Output for other Apps

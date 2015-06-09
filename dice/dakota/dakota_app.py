@@ -14,13 +14,13 @@ class DakotaApp(BasicApp):
         BasicApp.__init__(self, parent, instance_name, status)
 
         self.dakota_files = dict()
-        # self.dakota_input_file_name = None
 
     def register_dakota_file(self, path, var):
-        # self.dakota_input_file_name = path
         self.dakota_files[path] = var
         self.signal(path)
 
+    # Get/Set/Signal Dakota var
+    # =========================
     def get_dakota_var(self, path=None):
         if path is None:
             return None
@@ -54,6 +54,8 @@ class DakotaApp(BasicApp):
         else:
             return None
 
+    # Get/Set/Signal Optional Dakota keyword
+    # ======================================
     def get_dakota_keyword(self, path_and_model_method):
         if path_and_model_method is None:
             return None
@@ -108,6 +110,8 @@ class DakotaApp(BasicApp):
         else:
             return None
 
+    # Check if a keyword exists in file
+    # =================================
     def dakota_keyword_exists(self, path):
         if path is None:
             return False
@@ -122,6 +126,8 @@ class DakotaApp(BasicApp):
         else:
             return False
 
+    # Create specific or remove keyword
+    # =================================
     def set_invalid_or_remove_var(self, path, set_invalid):
         if set_invalid:
             self.set_dakota_var(path, "")
@@ -144,6 +150,25 @@ class DakotaApp(BasicApp):
         else:
             return
 
+    # Dakota option
+    # =============
+    def get_dakota_option(self, path_and_default_value):
+        path = path_and_default_value[0]
+        return self.dakota_keyword_exists(path)
+
+    def set_dakota_option(self, path_and_default_value, checked):
+        path = path_and_default_value[0]
+        default_value = path_and_default_value[1]
+        if not checked:
+            self.remove_from_dict(path)
+        else:
+            self.set_dakota_var(path, default_value)
+
+    def dakota_option_signal_name(self, path=None):
+        return "input.in"
+
+    # Run dakota instance
+    # ===================
     def dakota_exec(self, args, stdout=None, stderr=None, cwd=None):
 
         # Set Environment

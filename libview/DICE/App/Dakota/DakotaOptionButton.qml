@@ -7,7 +7,7 @@ CheckBoxButton {
     property var defaultValue: ""
 
 
-    methodName: "lower_bounds"
+    methodName: "dakota_option"
 
     callParameter: {
         if (defaultValue !== "")
