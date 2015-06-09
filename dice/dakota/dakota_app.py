@@ -154,8 +154,12 @@ class DakotaApp(BasicApp):
         os_dakota_ld_library_path = ":" + dakota_bin_path + ":" + dakota_lib_path
         os_dakota_path = ":" + dakota_bin_path + ":" + dakota_test_path
 
-        os.environ['LD_LIBRARY_PATH'] += os_dakota_ld_library_path
-        os.environ['PATH'] += os_dakota_path
+        try:
+            os.environ['LD_LIBRARY_PATH'] += os_dakota_ld_library_path
+            os.environ['PATH'] += os_dakota_path
+        except KeyError:
+            os.environ['LD_LIBRARY_PATH'] = os_dakota_ld_library_path
+            os.environ['PATH'] = os_dakota_path
 
         f_args = [self.dice.settings.value(self, ['DAKOTA', 'dakota'])]
         f_args.extend(args)

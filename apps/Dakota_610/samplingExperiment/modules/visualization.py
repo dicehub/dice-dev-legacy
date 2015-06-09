@@ -36,7 +36,7 @@ class Visualization:
                          plot_height=self.default_plot_height,
                          tools="pan,wheel_zoom,box_zoom,reset,resize,previewsave"))
         self.p[0].scatter(self.x1, self.y1, size=12, color="red", alpha=0.5)
-        # self.p[0].toolbar_location = None
+        self.p[0].toolbar_location = None
 
         save(HBox(self.p[0]))
 
