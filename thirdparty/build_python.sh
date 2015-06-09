@@ -31,6 +31,7 @@ buildpackages() {
     ./bin/pip3 install matplotlib
     ./bin/pip3 install PyFoam
     ./bin/pip3 install bokeh
+    ./bin/pip3 install ply
 }
 
 build() {
