@@ -13,8 +13,6 @@ DC.CheckBoxButton {
 
     property alias callParameter: __valueConnector.callParameter
 
-    property bool valueChanging: false // For syncing with other checkBoxButtons
-
     property PythonValueConnector valueConnector: PythonValueConnector {
         id: __valueConnector
 
@@ -23,17 +21,19 @@ DC.CheckBoxButton {
 
     property var valueConnectorValue: valueConnector.value
 
-    checked: valueConnectorValue
-
-    onValueConnectorValueChanged: {
-        valueChanging = true
-//        if (checked !== valueConnectorValue)
-//            checked = valueConnectorValue
-        valueChanging = false
+    checkedState: {
+        if (valueConnectorValue)
+            Qt.Checked
+        else
+            Qt.Unchecked
     }
 
-    onCheckedChanged: {
-        if (!valueChanging)
-            valueConnector.setValue(root.checked)
+    onValueConnectorValueChanged: {
+        if (checked !== valueConnectorValue)
+            checked = valueConnectorValue
+    }
+
+    onClicked: {
+        valueConnector.setValue(!root.checked)
     }
 }

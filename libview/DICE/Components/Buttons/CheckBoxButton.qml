@@ -6,6 +6,7 @@ CheckBox {
     id: root
 
     property color color: colors.highlightColor
+    property bool checked: false
 
     style: CheckBoxStyle {}
 }

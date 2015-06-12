@@ -4,7 +4,7 @@ CheckBoxButton {
     id: root
 
     property string path
-    property var defaultValue: ""
+    property var defaultValue: "" // needs to be var because it also can be int or float
 
 
     methodName: "dakota_option"
