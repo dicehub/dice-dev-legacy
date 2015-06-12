@@ -211,6 +211,77 @@ class samplingExperiment(DakotaApp, Visualization):
         return self.input_file_name  + " method"
 
     '''
+    Number of variables/descriptors
+    ===============================
+    '''
+    def get_descriptors_count(self):
+        descriptors = self.get_dakota_var("input.in variables descriptors")
+        count = len(descriptors)
+        return count
+
+    '''
+    Add variable
+    ============
+    '''
+    def add_variable(self):
+        # Variable is added to the end of the variables list
+        # ==================================================
+        variables_dict = self.dakota_input_file['variables']
+        if 'descriptors' in variables_dict:
+            self.add_descriptor()
+        if 'upper_bounds' in variables_dict:
+            self.add_upper_bounds()
+        if 'lower_bounds' in variables_dict:
+            self.add_lower_bounds()
+        if 'initial_point' in variables_dict:
+            self.add_initial_point()
+        if 'continuous_design' in variables_dict:
+            self.update_continuous_design_descriptors_count()
+        self.dakota_input_file.writeFile()
+        self.update_tree_view()
+
+    def add_descriptor(self, i=1):
+        descriptors_count = self.get_descriptors_count()
+        name = "x" + str(descriptors_count+i)
+        descriptors_list = self.dakota_input_file["variables"]["descriptors"]
+        if name not in descriptors_list:
+            descriptors_list.append(name)
+            self.set_dakota_var("input.in variables descriptors", descriptors_list)
+        else:
+            name = self.add_descriptor(i=i+1)
+        return name
+
+    def add_upper_bounds(self):
+        self.dakota_input_file["variables"]["upper_bounds"].append(1)
+
+    def add_lower_bounds(self):
+        self.dakota_input_file["variables"]["lower_bounds"].append(0)
+
+    def add_initial_point(self):
+        self.dakota_input_file["variables"]["initial_point"].append(0)
+
+    def update_continuous_design_descriptors_count(self):
+        self.dakota_input_file["variables"]["continuous_design"] = self.get_descriptors_count()
+
+    '''
+    Remove variable
+    ===============
+    '''
+    def remove_variable(self, descriptor_name):
+        self.debug(descriptor_name)
+        index = None
+        for i, name in enumerate(self.dakota_input_file['variables']['descriptors']):
+            if name == descriptor_name:
+                index = i
+        if index is not None:
+            self.dakota_input_file["variables"]["descriptors"].remove(descriptor_name)
+            del self.dakota_input_file["variables"]["upper_bounds"][index]
+            del self.dakota_input_file["variables"]["lower_bounds"][index]
+            del self.dakota_input_file["variables"]["initial_point"][index]
+            self.dakota_input_file.writeFile()
+            self.update_tree_view()
+
+    '''
     Output for other Apps
     =====================
     '''

@@ -74,7 +74,9 @@ class Visualization:
         self.reload_web_engine = False
         import time
         time.sleep(0.1)
-        save(vplot(self.p[0], self.p[1], self.p[2]))
+        # save(vplot(self.p[0], self.p[1], self.p[2]))
+        plots = vplot(*self.p)
+        save(plots)
         self.reload_web_engine = True
 
     reload_web_engine_changed = pyqtSignal(name="reloadWebEngineChanged")
@@ -98,6 +100,7 @@ class Visualization:
         self.p = []
         data = csv_data.data()
         for var_name in data:
+            self.debug(var_name)
             if var_name != "%eval_id":
                 self.p.append(self.create_scatter_figure(data["%eval_id"],
                                                          data[var_name],

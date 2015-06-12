@@ -39,18 +39,23 @@ Card {
     }
 
     Row {
-        enabled: !!treeView.currentNode
-        visible: enabled
         width: parent.width
         spacing: 10
 
         FlatButton {
             text: "Add"
             width: (parent.width - parent.spacing)*0.5
+            onClicked: {
+                app.call("add_variable")
+            }
         }
         FlatButton {
+            enabled: !!treeView.currentNode
             text: "Delete"
             width: (parent.width - parent.spacing)*0.5
+            onClicked: {
+                app.call("remove_variable", [treeView.currentNodePath[0]])
+            }
         }
     }
 
