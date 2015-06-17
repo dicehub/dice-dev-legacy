@@ -14,6 +14,7 @@ class Help(CoreApp, DictHelper):
         self.__home_html_path = os.path.abspath("core_apps/Help/view/HTML/index.html")
         self.__docs_css = os.path.abspath("core_apps/Help/view/bootstrap-3.3.2-dist/css/bootstrap.css")
         self.__docs_font = os.path.abspath("core_apps/Help/view/bootstrap-3.3.2-dist/fonts/OpenSans/custom_font.css")
+        self.__editor_lib_folder_path = os.path.abspath("thirdparty/js_lib/codemirror-5.0")
 
     docs_css_changed = pyqtSignal(name="docsCSSChanged")
 
