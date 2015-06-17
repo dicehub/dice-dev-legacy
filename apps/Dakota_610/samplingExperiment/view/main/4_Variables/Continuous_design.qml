@@ -1,4 +1,4 @@
-import QtQuick 2.3
+import QtQuick 2.4
 
 import DICE.App 1.0
 import DICE.App.Dakota 1.0

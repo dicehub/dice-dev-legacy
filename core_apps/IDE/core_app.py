@@ -33,8 +33,8 @@ class IDE(CoreApp, DictHelper):
             os.makedirs(self.__temp_dir_path)
         self.__editor_html_path = os.path.join(self.__temp_dir_path, "index.html")
         self.__editor_temp_html_path = os.path.join(self.__temp_dir_path, "template.html")
-        self.__editor_template_html_folder_path = os.path.abspath("core_apps/IDE/view/codemirror-5.0/")
-        self.__editor_template_html_path = os.path.abspath("core_apps/IDE/view/codemirror-5.0/template.html")
+        self.__editor_lib_folder_path = os.path.abspath("/home/build/thirdparty/js_lib/codemirror-5.0")
+        self.__editor_template_html_path = os.path.abspath("core_apps/IDE/view/template.html")
         self.__current_edited_file_path = ""
         self.__editor_data = ""
         self.config = None
@@ -73,9 +73,9 @@ class IDE(CoreApp, DictHelper):
         with open(self.__editor_temp_html_path, "r") as editor_template_file:
             editor_template_file_content = editor_template_file.read()
             self.editor_data = editor_template_file_content.replace('href="',
-                                                                    'href="{0}/'.format(self.__editor_template_html_folder_path))
+                                                                    'href="{0}/'.format(self.__editor_lib_folder_path))
             self.editor_data = self.editor_data.replace('src="',
-                                                        'src="{0}/'.format(self.__editor_template_html_folder_path))
+                                                        'src="{0}/'.format(self.__editor_lib_folder_path))
             with open(self.__editor_temp_html_path, "w") as editor_html_file:
                 editor_html_file.write(self.editor_data)
 
