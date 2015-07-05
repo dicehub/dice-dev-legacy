@@ -2,9 +2,13 @@
 
 [![Join the chat at https://gitter.im/diceproject/dice-dev](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/diceproject/dice-dev?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![License](http://img.shields.io/:license-gpl3-blue.svg)](http://img.shields.io/:license-gpl3-blue.svg)
-[![GitHub issues](https://img.shields.io/github/issues/diceproject/dice-dev.svg)](https://github.com/diceproject/dice-dev/issues)
-[![GitHub release](https://img.shields.io/github/release/diceproject/dice-dev.svg)](https://github.com/diceproject/dice-dev)
+[![License](https://img.shields.io/badge/license-GPLv3-blue.svg?style=flat-square)](https://raw.githubusercontent.com/diceproject/dice-dev/master/LICENSE.md)
+[![Issues](https://img.shields.io/github/issues/diceproject/dice-dev.svg?style=flat-square)](https://github.com/diceproject/dice-dev/issues)
+[![GitHub release](https://img.shields.io/github/release/diceproject/dice-dev.svg?style=flat-square)](https://github.com/diceproject/dice-dev)
+
+[![GitHub forks](https://img.shields.io/github/forks/diceproject/dice-dev.svg?style=flat-square)](https://github.com/diceproject/dice-dev/network)
+[![GitHub stars](https://img.shields.io/github/stars/diceproject/dice-dev.svg?style=flat-square)](https://github.com/diceproject/dice-dev/stargazers)
+
 
 **DICE** is an experimental open source project for a simplified creation of  user interfaces and utilities in the area of numerical simulations.
 
