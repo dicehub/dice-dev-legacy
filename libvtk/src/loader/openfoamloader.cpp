@@ -21,7 +21,7 @@ OpenFOAMLoader::OpenFOAMLoader(QObject* parent) : LoaderBase(parent)
 
 QList<QString> OpenFOAMLoader::getPatchNames()
 {
-    return {"min_X_Plane", "max_X_Plane", "min_Y_Plane", "max_Y_Plane", "min_Z_Plane", "max_Z_Plane", "zone0"};
+    return {"min_X_Plane", "max_X_Plane", "min_Y_Plane", "max_Y_Plane", "min_Z_Plane", "max_Z_Plane", "Star"};
 }
 
 QStringList OpenFOAMLoader::actorPath(vtkActor *actor)
@@ -37,7 +37,7 @@ void OpenFOAMLoader::reload()
 void OpenFOAMLoader::makeReader(const char *fileName)
 {
     reader = vtkSmartPointer<vtkPOpenFOAMReader>::New();
-    reader->SetCaseType(1);
+    reader->SetCaseType(1); // not parallel
     reader->SetFileName(fileName);
 
     reader->CreateCellToPointOn();
@@ -52,6 +52,7 @@ void OpenFOAMLoader::makeReader(const char *fileName)
 
     reader->ReleaseDataFlagOn();
 
+    this->readInternalMeshOn();
     for (QString patch: getPatchNames()) {
         reader->SetPatchArrayStatus(patch.toStdString().c_str(), 1);
     }
@@ -61,11 +62,10 @@ void OpenFOAMLoader::makeReader(const char *fileName)
 
     reader->Update();
 
-    vtkMultiBlockDataSet* dataSet = reader->GetOutput();
+//    vtkMultiBlockDataSet* dataSet = reader->GetOutput();
 
-    int numOfBlocks = dataSet->GetNumberOfBlocks();
-    qDebug() << "got"<< numOfBlocks << "blocks";
-
+//    int numOfBlocks = dataSet->GetNumberOfBlocks();
+//    qDebug() << "got"<< numOfBlocks << "blocks";
 }
 
 void OpenFOAMLoader::loadCellBlock()
@@ -127,4 +127,13 @@ void OpenFOAMLoader::createActors()
 {
     makeReader(fileName.toStdString().c_str());
     createPatchActors(reader->GetOutput());
+}
+
+void OpenFOAMLoader::readInternalMeshOff() {
+    reader->SetPatchArrayStatus("internalMesh", 0);
+}
+
+void OpenFOAMLoader::readInternalMeshOn() {
+    QString internalMeshLabel = "internalMesh";
+    reader->SetPatchArrayStatus("internalMesh", 1);
 }

@@ -35,7 +35,7 @@ void STLLoader::createActors()
 //    actor->Set
 
 //    actor->GetProperty()->SetColor(0.5, 0.5, 1.0);
-//    actor->GetProperty()->SetEdgeColor(0.1, 0.1, 1);
+    actor->GetProperty()->SetEdgeColor(0.1, 0.1, 1);
 //    actor->GetProperty()->BackfaceCullingOn();
 
     QString relativeFileName = "zone0"; // TODO: read regions

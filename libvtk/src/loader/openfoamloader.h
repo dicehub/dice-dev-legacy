@@ -17,6 +17,9 @@ public:
     QStringList actorPath(vtkActor *actor) override;
     void reload() override;
 
+    void readInternalMeshOff();
+    void readInternalMeshOn();
+
 private:
     vtkSmartPointer<vtkPOpenFOAMReader> reader;
 
