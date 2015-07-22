@@ -59,4 +59,8 @@ Create make file by executing:
 Run make in **dice_build**:
 
     $ make -r -w -j 4
+
+Now install dice:
+
+    $ make install
     
