@@ -2,6 +2,12 @@
 # File for qmake to generate a Makefile.
 # --------------------------------------
 
+TARGET = DICE
+DESTDIR = $$(PWD)
+#message(The project will be installed in $$DESTDIR)
+
+VERSION = _0.0.3
+
 TEMPLATE = subdirs
 SUBDIRS = libvtk main
 
@@ -13,7 +19,8 @@ QML_IMPORT_PATH = libview
 OTHER_FILES += qt.conf \
                 README.md \
                 LICENSE.md \
-                INSTALL.md
+                INSTALL.md \
+                DICE.pro
 
 
 for(FILE, OTHER_FILES){
