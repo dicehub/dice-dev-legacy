@@ -188,8 +188,8 @@ SplitView {
                         onLoadProgressChanged: {
                             var docsCss = mainWindow.getCoreApp("Help").docsCSS
                             var docsFont = mainWindow.getCoreApp("Help").docsFont
-                            runJavaScript(mainWindow.getCoreApp("Help").createJSfunctionForCSSaddidition(docsCss))
-                            runJavaScript(mainWindow.getCoreApp("Help").createJSfunctionForCSSaddidition(docsFont))
+                            runJavaScript(mainWindow.getCoreApp("Help").addCustomCSS(docsCss))
+                            runJavaScript(mainWindow.getCoreApp("Help").addCustomCSS(docsFont))
                             var highlightFragment = "document.getElementById('" + root.fragment + "').style.backgroundColor='oldlace';"
                             runJavaScript(highlightFragment);
                         }
