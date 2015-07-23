@@ -1,0 +1,8 @@
+{
+    "solvers": {
+        "p": {
+            "solver": ["PCG", "GAMG"],
+            "preconditioner": ["DIC"]
+        }
+    }
+}

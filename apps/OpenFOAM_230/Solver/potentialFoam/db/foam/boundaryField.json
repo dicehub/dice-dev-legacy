@@ -1,0 +1,16 @@
+{
+  "types": [
+    "patch",
+    "wall",
+    "symmetry",
+    "wedge",
+    "cyclicAMI",
+    "cyclic"
+  ],
+  "derivedType": {
+    "cyclicAMI" : {
+	"matchTolerance": 1e-4,
+	"transform" : ["noOrdering", "translational", "rotational"]
+     }
+  }
+}

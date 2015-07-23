@@ -1,0 +1,9 @@
+{
+  "startFrom": ["firstTime", "startTime", "latestTime"],
+  "stopAt": ["endTime", "writeNow", "noWriteNow", "nextWrite"],
+  "writeControl": ["timeStep", "runTime", "adjustableRunTime", "cpuTime", "clockTime"],
+  "writeFormat": ["ascii", "binary"],
+  "writeCompression": ["uncompressed", "compressed"],
+  "timeFormat": ["fixed", "scientific", "general"],
+  "graphFormat": ["raw", "gnuplot", "xmgr", "jplot"]
+} 
