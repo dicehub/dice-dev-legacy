@@ -11,13 +11,13 @@ Card {
     Row {
         spacing: 10
         width: parent.width
-        RaisedButton {
+        FlatButton {
             text: "Remove Last Action and Repeat All"
             iconSource: "images/removeLastAction.svg"
             width: (parent.width - parent.spacing)/2
             onClicked: app.call("remove_last_history_entry")
         }
-        RaisedButton {
+        FlatButton {
             text: "Replay History"
             color: colors.highlightColor
             textColor: "#fff"
@@ -49,7 +49,7 @@ Card {
         height: 40
         width: parent.width
     }
-    RaisedButton {
+    FlatButton {
         text: "Remove Last Action and Replay History"
         iconSource: "images/removeLastAction.svg"
         onClicked: app.call("remove_last_history_entry")

@@ -21,14 +21,14 @@ Body {
         Row {
             spacing: 10
             width: parent.width
-            RaisedButton {
+            FlatButton {
                 text: "Import"
                 width: (parent.width - parent.spacing)/2
                 onClicked: {
                     fileDialog.open("import_files", "Select Files for Import", ["Object-Files (*.stl *.obj)", "STL File (*.stl)", "OBJ File (*.obj)"], true)
                 }
             }
-            RaisedButton {
+            FlatButton {
                 text: "Delete selected file"
                 color: colors.warningColor
                 textColor: "#fff"
