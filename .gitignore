@@ -5,5 +5,6 @@ DICE.pro.user.2.7pre1
 tools/vtk.pri
 libvtk/vtk.pro.user
 
+__pycache__
 *.pyc
 *.pyo
