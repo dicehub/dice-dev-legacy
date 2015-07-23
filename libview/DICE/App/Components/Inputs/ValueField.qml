@@ -55,6 +55,8 @@ FocusScope {
         onValueConnectorValueChanged: {
             if (currentEnteredCharachter === ".")  // so when deleting from 0.2 to 0. doesn't delete "."-char too
                 return
+            if (text.indexOf(".0") !==-1)
+                return
             if (text.indexOf("e") !==-1 || text.indexOf("E") !== -1)
                 return
             text = valueConnector.value !== undefined ? valueConnector.value : ""
