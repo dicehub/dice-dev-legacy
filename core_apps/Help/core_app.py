@@ -12,10 +12,12 @@ class Help(CoreApp, DictHelper):
         super(Help, self).__init__(parent)
 
         self.__home_html_path = os.path.abspath("core_apps/Help/view/HTML/index.html")
-        self.__docs_css = os.path.abspath("core_apps/Help/view/bootstrap-3.3.2-dist/css/bootstrap.css")
-        self.__docs_font = os.path.abspath("core_apps/Help/view/bootstrap-3.3.2-dist/fonts/OpenSans/custom_font.css")
+        self.__docs_css = os.path.abspath("thirdparty/js_lib/bootstrap-3.3.2/dist/css/bootstrap.css")
+        self.__docs_font = os.path.abspath("thirdparty/js_lib/open-sans-1.4.2/open-sans.css")
         self.__editor_lib_folder_path = os.path.abspath("thirdparty/js_lib/codemirror-5.0")
 
+    # Styling with bootstrap
+    # ======================
     docs_css_changed = pyqtSignal(name="docsCSSChanged")
 
     @property
@@ -26,6 +28,8 @@ class Help(CoreApp, DictHelper):
 
     docs_font_changed = pyqtSignal(name="docsFontChanged")
 
+    # Open Sans Font
+    # ==============
     @property
     def docs_font(self):
         return self.__docs_font

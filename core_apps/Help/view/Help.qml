@@ -75,8 +75,8 @@ CoreApp {
             }
         }
         onLoadProgressChanged: {
-            runJavaScript(createJSfunctionForCSSaddidition(root.docsCSS))
-            runJavaScript(createJSfunctionForCSSaddidition(root.docsFont))
+            runJavaScript(addCustomCSS(root.docsCSS))
+            runJavaScript(addCustomCSS(root.docsFont))
             var highlightFragment = "document.getElementById('" + webEngineView.fragment + "').style.backgroundColor='oldlace';"
             runJavaScript(highlightFragment);
         }
@@ -118,7 +118,7 @@ CoreApp {
         }
     }
 
-    function createJSfunctionForCSSaddidition(css_path) {
+    function addCustomCSS(css_path) {
             // taken from http://stackoverflow.com/questions/574944/how-to-load-up-css-files-using-javascript
             return  "if (window.location.protocol === 'file:')" +
                     "var cssId = '" + css_path + "';" +

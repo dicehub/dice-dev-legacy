@@ -31,8 +31,24 @@ get_codemirror() {
     tar xf "$codemirror_zip"
 }
 
-if [ -f "js_lib/5.3.0.tar.gz" ]; then
+if [ -f "js_lib/CodeMirror-5.3.0" ]; then
     echo "codemirror installed"
 else
 	get_codemirror
+fi
+
+
+get_open_sans_font() {
+	open_sans_font_url="https://github.com/FontFaceKit/open-sans/archive/1.4.2.tar.gz"
+	open_sans_font_zip="1.4.2.tar.gz"
+	echo "Get Open Sans Font"
+	wget "$open_sans_font_url"
+	echo "unpack"
+    tar xf "$open_sans_font_zip"
+}
+
+if [ -f "js_lib/open-sans-1.4.2" ]; then
+    echo "Open Sans Font installed"
+else
+	get_open_sans_font
 fi

@@ -33,7 +33,7 @@ class IDE(CoreApp, DictHelper):
             os.makedirs(self.__temp_dir_path)
         self.__editor_html_path = os.path.join(self.__temp_dir_path, "index.html")
         self.__editor_temp_html_path = os.path.join(self.__temp_dir_path, "template.html")
-        self.__editor_lib_folder_path = os.path.abspath("thirdparty/js_lib/codemirror-5.0")
+        self.__editor_lib_folder_path = os.path.abspath("thirdparty/js_lib/CodeMirror-5.3.0")
         self.__editor_template_html_path = os.path.abspath("core_apps/IDE/view/template.html")
         self.__current_edited_file_path = ""
         self.__editor_data = ""
