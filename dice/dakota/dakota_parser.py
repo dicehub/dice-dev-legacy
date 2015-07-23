@@ -3,13 +3,13 @@
 import json
 from collections import OrderedDict
 
+from ply.lex import TOKEN
 from PyQt5.QtCore import qDebug
 
 # DICE modules
 # ============
 from dice.tools.path_helper import PathHelper
 from dice.third_party.ply_parser import PlyParser
-from dice.third_party.ply.lex import TOKEN
 from dice.dakota.dakota_input_file_generator import DakotaInputFileGenerator
 
 
