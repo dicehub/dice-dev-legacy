@@ -6,9 +6,9 @@ if [ ! -d $sip_base_dir ]; then
 fi
 cd $sip_base_dir
 
-sip_dir="sip-4.16.7"
-sip_zip="sip-4.16.7.tar.gz"
-sip_url="http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.7/sip-4.16.7.tar.gz"
+sip_dir="sip-4.16.8"
+sip_zip="sip-4.16.8.tar.gz"
+sip_url="http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.8/sip-4.16.8.tar.gz"
 parallel=4
 
 PYTHON="`pwd`/../Python/bin/python3"

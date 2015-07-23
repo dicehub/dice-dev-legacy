@@ -8,9 +8,9 @@ cd $pyqt_base_dir
 
 QMAKE="`pwd`/../Qt/bin/qmake" # must be the same as in build_qt.sh
 
-pyqt_dir="PyQt-gpl-5.4.1"
-pyqt_zip="PyQt-gpl-5.4.1.tar.gz"
-pyqt_url="http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.4.1/PyQt-gpl-5.4.1.tar.gz"
+pyqt_dir="PyQt-gpl-5.4.2"
+pyqt_zip="PyQt-gpl-5.4.2.tar.gz"
+pyqt_url="http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.4.2/PyQt-gpl-5.4.2.tar.gz"
 parallel=4
 
 PYTHON="`pwd`/../Python/bin/python3"
