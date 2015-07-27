@@ -163,11 +163,15 @@ class FoamApp(BasicApp):
     #     with open(self.current_run_path("log"), "a") as log_file:
     #         log_file.write(line)
 
-    def foam_exec(self, args, stdout=None, stderr=None, cwd=None):
+    def foam_exec(self, args, stdout=None, stderr=None):
         f_args = [self.dice.settings.value(self, ['OpenFOAM', 'foamExec'])]
         f_args.extend(args)
         cwd = self.current_run_path()
-        result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd)
+        if args[0] == "mpirun":
+            log_cmd_name = args[3]
+        else:
+            log_cmd_name = args[0]
+        result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd, log_cmd_name=log_cmd_name)
         return result
 
 

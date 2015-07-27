@@ -7,17 +7,25 @@ from threading import Thread
 
 # External modules
 # ================
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, qDebug
 
+# DICE modules
+# ============
+from dice.app_helper.log_file import LogFile
 
 class ProcessRunner:
     """
     Mixin for BasicApp that handles running external processes.
     Works only with BasicApp, as it expects the log method to be available.
     """
+    def __init__(self):
+        self.cwd = None
+        self.cmd = None
+        self.log_file = None
 
     def read_process_line(self, line):
         self.log(str(line).replace("\n", "<br />"))
+        self.log_file.write_line(line)
 
     def read_process_error_line(self, line):
         self.log("<p style='color: red;'>"+str(line)+"</p>")
@@ -78,10 +86,13 @@ class ProcessRunner:
             else:
                 self.running_procs.remove(proc)
 
-    def run_process(self, args, env={}, stdout=None, stderr=None, **kwargs):
+    def run_process(self, args, env={}, stdout=None, stderr=None, cwd=None, log_cmd_name=None, **kwargs):
         proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True, bufsize=1,
-                                preexec_fn=os.setsid, **kwargs)
+                                preexec_fn=os.setsid, cwd=cwd, **kwargs)
         self.running_procs.append(proc)
+        self.cwd = cwd
+        self.cmd = log_cmd_name
+        self.log_file = LogFile(self.cmd, self.cwd)
         q = queue.Queue()
         t_out = Thread(target=self.__process_output_stdout, args=(proc.stdout, q))
         t_err = Thread(target=self.__process_output_stderr, args=(proc.stderr, q))
