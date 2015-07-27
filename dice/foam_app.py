@@ -166,6 +166,7 @@ class FoamApp(BasicApp):
     def foam_exec(self, args, stdout=None, stderr=None, cwd=None):
         f_args = [self.dice.settings.value(self, ['OpenFOAM', 'foamExec'])]
         f_args.extend(args)
+        cwd = self.current_run_path()
         result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd)
         return result
 
