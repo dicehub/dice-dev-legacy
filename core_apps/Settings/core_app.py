@@ -56,15 +56,16 @@ class Settings(CoreApp):
         :param settings_path:
         :return:
         """
-        for app_name in self.__settings:
-            if app_name == settings_path[0]:
-                for label, value in self.__settings[app_name].items():
-                    return [
-                        {
-                            'label': label,
-                            'value': value
-                        }
-                    ]
+        if settings_path:
+            for app_name in self.__settings:
+                if app_name == settings_path[0]:
+                    for label, value in self.__settings[app_name].items():
+                        return [
+                            {
+                                'label': label,
+                                'value': value
+                            }
+                        ]
 
     @pyqtSlot("QStringList", str, "QVariant", name="setValue")
     def set_value(self, path, label, value):
