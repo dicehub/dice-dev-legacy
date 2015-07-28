@@ -17,7 +17,7 @@ from PyQt5.QtCore import pyqtSignal, pyqtSlot, pyqtProperty
 from PyFoam.Applications.CreateBoundaryPatches import CreateBoundaryPatches
 from PyFoam.RunDictionary.ParsedParameterFile import ParsedParameterFile
 from PyFoam.RunDictionary.BoundaryDict import BoundaryDict
-from PyFoam.Basics.DataStructures import Field, Vector
+from PyFoam.Basics.DataStructures import Field, Vector, DictProxy
 
 # DICE modules
 # ============
@@ -427,7 +427,123 @@ class potentialFoam(FoamApp, BoundaryTypes):
     Solver Settings
     ===============
     '''
-    
+    def pressure_fv_solution_solvers(self):
+        return ["PCG", "GAMG", "smoothSolver", "ICCG"]
+
+    def get_pressure_fv_solution_solvers(self, path):
+        return self.get_foam_var(path)
+
+    def set_pressure_fv_solution_solvers(self, path, value):
+        # self.set_foam_var(path, value)
+        if value in self.pressure_fv_solution_solvers():
+            if value == "PCG":
+                self.__fv_solutions["solvers"]["p"] = {
+                    "solver": value,
+                    "preconditioner": "DIC",
+                    "tolerance": 1e-06,
+                    "relTol": 0,
+                    "minIter": 0,
+                    "maxIter": 1000
+                }
+            elif value == "GAMG":
+                self.__fv_solutions["solvers"]["p"] = {
+                    "solver": value,
+                    "agglomerator": "faceAreaPair",
+                    "cacheAgglomeration": True,
+                    "mergeLevels": 1,
+                    "preconditioner": "DIC",
+                    "nCellsInCoarsestLevel": 200,
+                    "tolerance": 1e-06,
+                    "relTol": 0,
+                    "minIter": 0,
+                    "maxIter": 1000,
+                    "smoother": "GaussSeidel",
+                    "nPreSweeps": 0,
+                    "preSweepsLevelMultiplier": 1,
+                    "nPostSweeps_": 2,
+                    "postSweepsLevelMultiplier": 1,
+                    "maxPostSweeps": 4,
+                    "nFinestSweeps": 2,
+                    "interpolateCorrection": False,
+                    "directSolveCoarsest": False
+                }
+            elif value == "smoothSolver":
+                self.__fv_solutions["solvers"]["p"] = {
+                    "solver": value,
+                    "preconditioner": "DIC",
+                    "smoother": "GaussSeidel",
+                    "tolerance": 1e-06,
+                    "relTol": 0,
+                    "minIter": 0,
+                    "maxIter": 1000
+                }
+            elif value == "ICCG":
+                self.__fv_solutions["solvers"]["p"] = DictProxy()
+                self.__fv_solutions["solvers"]["p"]["solver"] = value
+                self.__fv_solutions["solvers"]["p"]["preconditioner"] = "DIC"
+                self.__fv_solutions["solvers"]["p"]["tolerance"] = 1e-06
+                self.__fv_solutions["solvers"]["p"]["relTol"] = 0
+                self.__fv_solutions["solvers"]["p"]["minIter"] = 0
+                self.__fv_solutions["solvers"]["p"]["maxIter"] = 1000
+
+                # self.__fv_solutions["solvers"]["p"] = {
+                #     "solver": value,
+                #     "preconditioner": "DIC",
+                #     "tolerance": 1e-06,
+                #     "relTol": 0,
+                #     "minIter": 0,
+                #     "maxIter": 1000
+                # }
+            self.__fv_solutions.writeFile()
+
+    def pressure_fv_solution_solvers_signal_name(self):
+        return "system/fvSolution"
+
+    def symmetric_preconditioners(self):
+        return ["diagonal", "DIC", "FDIC", "GAMG", "none"]
+
+    def get_solver_preconditioner(self, path):
+        var, var_path = self.split_path(path)
+        if var_path[-1] == "GAMG":
+            return self.__fv_solutions["solvers"]["p"]["preconditioner"]["preconditioner"]
+        else:
+            return self.get_foam_var(path)
+
+    def set_solver_preconditioner(self, path, value):
+        if value == "GAMG":
+            self.__fv_solutions["solvers"]["p"]["preconditioner"] = {
+                    "agglomerator": "faceAreaPair",
+                    "cacheAgglomeration": True,
+                    "mergeLevels": 1,
+                    "preconditioner": "DIC",
+                    "nCellsInCoarsestLevel": 200,
+                    "tolerance": 1e-06,
+                    "relTol": 0,
+                    "minIter": 0,
+                    "maxIter": 1000,
+                    "smoother": "GaussSeidel",
+                    "nPreSweeps": 0,
+                    "preSweepsLevelMultiplier": 1,
+                    "nPostSweeps": 2,
+                    "postSweepsLevelMultiplier": 1,
+                    "maxPostSweeps": 4,
+                    "nFinestSweeps": 2,
+                    "interpolateCorrection": False,
+                    "directSolveCoarsest": False
+                }
+            self.__fv_solutions.writeFile()
+        else:
+            self.set_foam_var(path, value)
+
+    def solver_preconditioner_signal(self):
+        return "system/fvSolution"
+
+    def gamg_agglomerations(self):
+        return ["faceAreaPair"]
+
+    def symmetric_matrix_smoothers(self):
+        return ["DIC", "DICGaussSeidel", "FDIC", "GaussSeidel",
+                "nonBlockingGaussSeidel", "symGaussSeidel"]
 
     '''
     External Tools

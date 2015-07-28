@@ -9,5 +9,8 @@ ToolBarMenu {
         BigToolBarButton {
             action: actions.openParaview
         }
+        BigToolBarButton {
+            action: actions.reloadApp
+        }
     }
 }

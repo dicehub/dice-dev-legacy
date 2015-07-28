@@ -16,11 +16,12 @@ main.depends = libvtk
 
 QML_IMPORT_PATH = libview
 
-OTHER_FILES += qt.conf \
+OTHER_FILES += \
                 README.md \
                 LICENSE.md \
                 INSTALL.md \
-                DICE.pro
+                DICE.pro \
+                qt.conf
 
 
 for(FILE, OTHER_FILES){

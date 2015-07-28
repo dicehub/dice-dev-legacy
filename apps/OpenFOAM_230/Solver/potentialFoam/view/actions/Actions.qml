@@ -14,4 +14,12 @@ Item {
             app.call("open_paraview")
         }
     }
+
+    property Action reloadApp: Action{
+        text: "Reload Application"
+        iconName: text
+        onTriggered: {
+            app.call("load")
+        }
+    }
 }
