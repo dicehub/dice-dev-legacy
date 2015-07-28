@@ -90,9 +90,10 @@ class ProcessRunner:
         proc = subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, close_fds=True, bufsize=1,
                                 preexec_fn=os.setsid, cwd=cwd, **kwargs)
         self.running_procs.append(proc)
-        self.cwd = cwd
-        self.cmd = log_cmd_name
-        self.log_file = LogFile(self.cmd, self.cwd)
+        if cwd:
+            self.cwd = cwd
+            self.cmd = log_cmd_name
+            self.log_file = LogFile(self.cmd, self.cwd)
         q = queue.Queue()
         t_out = Thread(target=self.__process_output_stdout, args=(proc.stdout, q))
         t_err = Thread(target=self.__process_output_stderr, args=(proc.stderr, q))

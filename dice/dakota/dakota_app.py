@@ -190,5 +190,6 @@ class DakotaApp(BasicApp):
         f_args = [self.dice.settings.value(self, ['DAKOTA', 'dakota'])]
         f_args.extend(args)
         cwd = self.current_run_path()
-        result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd, env=os.environ)
+        log_cmd_name = "dakota"
+        result = self.run_process(f_args, stdout=stdout, stderr=stderr, cwd=cwd, log_cmd_name=log_cmd_name, env=os.environ)
         return result
