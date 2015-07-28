@@ -118,10 +118,10 @@ Column {
         }
         Connections {
             target: renderer.renderer
-            onPickedPatchChanged: {
-                root.pickedPatch = renderer.renderer.pickedPatch
-                geometriesTreeView.setCurrentNode(root.pickedPatch)
-            }
+//            onPickedPatchChanged: {
+//                root.pickedPatch = renderer.renderer.pickedPatch
+//                geometriesTreeView.setCurrentNode(root.pickedPatch)
+//            }
         }
         onPickedPatchChanged: renderer.renderer.pickedPatch = pickedPatch
     }
