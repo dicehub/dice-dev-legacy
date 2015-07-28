@@ -354,6 +354,7 @@ class BasicApp(QObject, QMLHelper, VisApp, ProcessRunner, FileOperations, DictHe
 
     def delete_instance(self):
         self.rmtree(self.config_path())
+        self.rmtree(self.current_run_path())
         return True
 
     def write_conf(self):
