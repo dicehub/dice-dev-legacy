@@ -66,5 +66,5 @@ Run make in **dice_build**:
 
 Now install dice:
 
-    $ make install
+    $ sudo make install
     
