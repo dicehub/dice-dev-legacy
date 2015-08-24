@@ -8,9 +8,10 @@ System requirements
 - [Qt 5.4.1](http://www.qt.io/download/)
 - [VTK 6.2.0](http://www.vtk.org/files/release/6.2/VTK-6.2.0.tar.gz)
 
-Optional requirements
+Requirements
 ---------------------
 
+- cmake
 - liblapack3
 - libgl1-mesa-dev
 - build-essential
