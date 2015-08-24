@@ -1,13 +1,6 @@
 HOW TO BUILD DICE
 =================
 
-System requirements
--------------------
-
-- [Python 3.4.2](https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tar.xz)
-- [Qt 5.4.1](http://www.qt.io/download/)
-- [VTK 6.2.0](http://www.vtk.org/files/release/6.2/VTK-6.2.0.tar.gz)
-
 Requirements:
 -------------
 
