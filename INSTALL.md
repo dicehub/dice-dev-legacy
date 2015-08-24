@@ -1,16 +1,13 @@
 HOW TO BUILD DICE
 =================
 
-System requirements
--------------------
+Requirements:
+-------------
 
-- [Python 3.4.2](https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tar.xz)
-- [Qt 5.4.1](http://www.qt.io/download/)
-- [VTK 6.2.0](http://www.vtk.org/files/release/6.2/VTK-6.2.0.tar.gz)
-
-Optional requirements
----------------------
-
+- libssl-dev
+- openssl
+- libxt-dev
+- cmake
 - liblapack3
 - libgl1-mesa-dev
 - build-essential
@@ -62,5 +59,5 @@ Run make in **dice_build**:
 
 Now install dice:
 
-    $ make install
+    $ sudo make install
     
