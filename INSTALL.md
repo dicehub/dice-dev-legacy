@@ -11,6 +11,8 @@ System requirements
 Requirements:
 -------------
 
+- libssl-dev
+- openssl
 - libxt-dev
 - cmake
 - liblapack3
